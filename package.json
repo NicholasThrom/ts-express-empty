@@ -1,0 +1,32 @@
+{
+  "name": "ts-express-empty",
+  "version": "0.0.0",
+  "description": "Just an empty ts/express app to save some time setting up.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "compile": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicholasThrom/ts-express-empty.git"
+  },
+  "keywords": [
+    "typescript",
+    "ts",
+    "express",
+    "empty"
+  ],
+  "author": "Nicholas Throm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NicholasThrom/ts-express-empty/issues"
+  },
+  "homepage": "https://github.com/NicholasThrom/ts-express-empty#readme",
+  "dependencies": {
+    "@types/express": "^4.11.0",
+    "@types/node": "^9.3.0",
+    "express": "^4.16.2"
+  }
+}
