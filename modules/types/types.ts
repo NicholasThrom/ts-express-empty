@@ -1,7 +1,7 @@
-/**
- * This file is for simple, reusuable types that are too small to deserve their
- * own file.
- */
+//
+// This file is for simple, reusuable types that are too small to deserve their
+// own file.
+//
 
 /**
  * `Optional<T>` is a more descriptive title for `T | null`.
