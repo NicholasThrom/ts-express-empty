@@ -21,7 +21,6 @@ app.use(lessMiddleware(path.join(__dirname, "app/public")));
 app.use("/public", express.static(path.join(__dirname, "app/public")));
 
 app.use((req, res, next) => {
-    log("Hello");
     const error = new HTTPError("Page not found");
     error.status = 404;
     next(error);
