@@ -3,11 +3,9 @@
 // https://www.npmjs.com/package/express-generator.
 //
 
-import * as debugPackage from "debug";
 import * as http from "http";
 import { app } from "../app/app";
-
-const debug = debugPackage("express:startup");
+import { log } from "../modules/log/log";
 
 /**
  * Converts the port string to a number, if it is a strictly positive integer,
@@ -31,8 +29,6 @@ const portName = typeof port === "string"
 
 const server = http.createServer(app);
 
-server.listen(port);
-
 server.on("error", (error) => {
     if ((error as any).syscall !== "listen") {
         throw error;
@@ -49,5 +45,7 @@ server.on("error", (error) => {
 });
 
 server.on("listening", () => {
-    debug(`And we're off on ${portName}`);
+    log(`And we're off on ${portName}`);
 });
+
+server.listen(port);

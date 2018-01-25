@@ -10,6 +10,24 @@
  */
 export type Optional<T> = T | null;
 
-export class HttpError extends Error {
+/**
+ * This is an error for express middleware to pass to `next()`.
+ * For example,
+ * ```
+ * route.use("/somewhere", (res, req, next) => {
+ *    if (somethingBadHappened) {
+ *        const error = new HTTPError("Something bad happened!");
+ *        error.status = 418;
+ *        next(error);
+ *    }
+ * });
+ * ```
+ */
+export class HTTPError extends Error {
+
+    /**
+     * The http status code the error page should return.
+     * See https://httpstatuses.com/ for details.
+     */
     public status = 500;
 }
