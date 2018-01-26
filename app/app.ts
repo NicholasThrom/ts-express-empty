@@ -11,7 +11,9 @@ import * as path from "path";
 import { log } from "../modules/log/log";
 import { HTTPError } from "../modules/types/types";
 
-export const app = express();
+import { router } from "./routes/routes";
+
+const app = express();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
@@ -20,9 +22,15 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(lessMiddleware(path.join(__dirname, "public")));
+app.use("/public", lessMiddleware(path.join(__dirname, "public")));
 app.use("/public", express.static(path.join(__dirname, "public")));
 
+
+
+// Main app
+app.use("/", router);
+
+// Error handling
 app.use((req, res, next) => {
     const error = new HTTPError("Page not found");
     error.status = 404;
@@ -38,3 +46,5 @@ app.use((err: any, req: express.Request, res: express.Response, next: express.Ne
     }
     res.send(err.message);
 });
+
+export { app };
