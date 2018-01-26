@@ -6,6 +6,7 @@ import * as bodyParser from "body-parser";
 import * as cookieParser from "cookie-parser";
 import * as express from "express";
 import lessMiddleware = require("less-middleware");
+import * as morgan from "morgan";
 import * as path from "path";
 import { log } from "../modules/log/log";
 import { HTTPError } from "../modules/types/types";
@@ -14,11 +15,13 @@ export const app = express();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
+
+app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(lessMiddleware(path.join(__dirname, "app/public")));
-app.use("/public", express.static(path.join(__dirname, "app/public")));
+app.use(lessMiddleware(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
     const error = new HTTPError("Page not found");
