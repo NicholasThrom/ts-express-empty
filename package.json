@@ -4,12 +4,19 @@
     "description": "Just an empty ts/express app to save some time setting up.",
     "main": "index.js",
     "scripts": {
-        "test": "./node_modules/mocha/bin/mocha --recursived",
-        "testing": "./node_modules/mocha/bin/mocha --recursived -w",
         "start": "node ./scripts/startup.js",
-        "compile": "./node_modules/typescript/bin/tsc",
-        "compiling": "./node_modules/typescript/bin/tsc -w",
-        "lint": "./node_modules/tslint/bin/tslint --project ./tsconfig.json"
+
+        "test": "./node_modules/mocha/bin/mocha --recursive",
+        "testing": "./node_modules/mocha/bin/mocha --recursive -w",
+
+        "compile": "./node_modules/typescript/bin/tsc && npm run concatenate",
+        "compiling": "npm run concatenating & ./node_modules/typescript/bin/tsc -w",
+
+        "lint": "./node_modules/tslint/bin/tslint --project ./tsconfig.json",
+        "linting": "./node_modules/watch/cli.js 'npm run lint' -d ./",
+
+        "concatenate": "find ./app/public/scripts/subscripts -name '*.js' | xargs cat > ./app/public/scripts/script.js",
+        "concatenating": "./node_modules/watch/cli.js 'npm run concatenate' ./app/public/scripts/subscripts/"
     },
     "repository": {
         "type": "git",
@@ -45,6 +52,7 @@
         "pug": "^2.0.0-rc.4",
         "sinon": "^4.2.2",
         "tslint": "^5.9.1",
-        "typescript": "^2.6.2"
+        "typescript": "^2.6.2",
+        "watch": "^1.0.2"
     }
 }
