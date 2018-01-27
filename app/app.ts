@@ -8,7 +8,6 @@ import * as express from "express";
 import lessMiddleware = require("less-middleware");
 import * as morgan from "morgan";
 import * as path from "path";
-import { log } from "../modules/log/log";
 import { HTTPError } from "../modules/types/types";
 
 import { router } from "./routes/routes";
