@@ -8,7 +8,7 @@
  * `undefined` was not included as this was intended for things that could
  * explicitly be null, not for things that have not yet been defined.
  */
-export type Optional<T> = T | null;
+type Optional<T> = T | null;
 
 /**
  * This is an error for express middleware to pass to `next()`.
@@ -23,7 +23,7 @@ export type Optional<T> = T | null;
  * });
  * ```
  */
-export class HTTPError extends Error {
+class HTTPError extends Error {
 
     /**
      * The http status code the error page should return.
@@ -31,3 +31,5 @@ export class HTTPError extends Error {
      */
     public status = 500;
 }
+
+export { Optional, HTTPError };

@@ -7,6 +7,8 @@
 /**
  * Logs the message `message` to the console.
  */
-export function log(message: string) {
+function log(message: string) {
     console.log(message);
 }
+
+export { log };
