@@ -12,7 +12,7 @@
         "lint": "./node_modules/tslint/bin/tslint --project ./tsconfig.json && ./node_modules/pug-lint/bin/pug-lint ./",
         "linting": "./node_modules/watch/cli.js 'npm run lint' -d ./",
         "concatenate": "find ./app/public/subscripts -name '*.js' | xargs cat > ./app/public/scripts/script.js",
-        "concatenating": "npm run concatenate ; ./node_modules/watch/cli.js 'npm run concatenate' ./app/public/scripts/subscripts/"
+        "concatenating": "npm run concatenate ; ./node_modules/watch/cli.js 'npm run concatenate' ./app/public/subscripts/"
     },
     "repository": {
         "type": "git",
