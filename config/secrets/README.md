@@ -1,12 +1,12 @@
 # Secrets
 
-This folder is a place to store things that shouldn't be checked into version control.
+This folder is a place to store things that aren't checked into version control.
 
 When you clone this repository, you'll notice that `npm run` throws an error telling you to look here.
 
 To fix these errors, you must create a `secrets.json` file in this folder (i.e. `config/secrets/secrets.js`)
 
-This file should have the following format:
+This file will have the following format:
 
 ```json
 {
@@ -25,4 +25,4 @@ for (let i = 0; i < 64; i++) {
 console.log(string);
 ```
 
-A 64 character string should be sufficient unless you tell someone what it is.
+A 64 character string is sufficient unless you tell someone what it is.

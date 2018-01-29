@@ -3,12 +3,43 @@
 // It doesn't do anything but link to other routers.
 //
 
+// External imports.
 import * as express from "express";
 
-import { router as home } from "./home/home";
+// Internal imports.
+import home from "./home/home";
 
-const router = express.Router();
 
-router.use("/", home);
 
-export { router };
+/**
+ * The class to be exported.
+ */
+class E {
+
+    /**
+     * The top level router.
+     */
+    public static readonly router = express.Router();
+
+    /**
+     * Initializes this class.
+     * For unit tests only – do not call.
+     */
+    public static init() {
+
+        E.router.use("/", home.router);
+
+    }
+
+    /**
+     * This class is never instantiated.
+     */
+    private constructor() {}
+
+}
+
+E.init();
+
+
+
+export default E;

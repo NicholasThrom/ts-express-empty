@@ -2,9 +2,7 @@
     "extends": "tslint:recommended",
     "rules": {
         "indent": [true, "spaces", 4],
-        "interface-name": {
-            "interface-name": [true, "never-prefix"]
-        },
+        "interface-name": [true, "never-prefix"],
         "max-classes-per-file": false,
         "member-access": [true, "check-accessor", "check-constructor", "check-parameter-property"],
         "member-ordering": [

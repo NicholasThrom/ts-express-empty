@@ -3,6 +3,8 @@
 // own file.
 //
 
+
+
 /**
  * `Optional<T>` is a more descriptive title for `T | null`.
  * `undefined` was not included as this was intended for things that could
@@ -24,12 +26,16 @@ type Optional<T> = T | null;
  * ```
  */
 class HTTPError extends Error {
-
     /**
-     * The http status code the error page should return.
+     * The http status code the error page will return.
      * See https://httpstatuses.com/ for details.
      */
     public status = 500;
 }
 
-export { Optional, HTTPError };
+
+
+export {
+    Optional,
+    HTTPError,
+};

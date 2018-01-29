@@ -3,49 +3,76 @@
 // https://www.npmjs.com/package/express-generator.
 //
 
+// External imports.
 import * as http from "http";
-import { app } from "../app/app";
-import { log } from "../modules/log/log";
+
+// Internal imports.
+import app from "../app/app";
+
+
 
 /**
- * Converts the port string to a number, if it is a strictly positive integer,
- * otherwise returns it as a string.
- * @param {string} port The port to convert.
- * @returns {string | number} A value for the port that can be listened to.
+ * The class to be exported.
  */
-function normalizePort(port: string) {
-    const portNumber = parseInt(port, 10);
-    if (isNaN(portNumber) || portNumber < 0) {
-        return port;
-    } else {
-        return portNumber;
+class E {
+
+    /**
+     * Converts the port string to a number, if it is a strictly positive integer,
+     * otherwise returns it as a string.
+     * @param {string} port The port to convert.
+     * @returns {string | number} A value for the port that can be listened to.
+     */
+    private static normalizePort(port: string) {
+        const portNumber = parseInt(port, 10);
+        if (isNaN(portNumber) || portNumber < 0) {
+            return port;
+        } else {
+            return portNumber;
+        }
     }
+
+    public static run() {
+
+        const port = E.normalizePort(process.env.PORT || "3000");
+
+        const portName = typeof port === "string"
+            ? `pipe ${port}`
+            : `port ${port}`;
+
+        const server = http.createServer(app.app);
+
+        server.on("error", (error) => {
+            if ((error as any).syscall !== "listen") {
+                throw error;
+            }
+
+            switch ((error as any).code) {
+                case "EACCES":
+                    throw new Error(`You do not have permission to use ${portName}. Did you mean to \`sudo\`?`);
+                case "EADDRINUSE":
+                    throw new Error(`Something is already using ${portName}. Maybe \`killall node\`?`);
+                default:
+                    throw error;
+            }
+        });
+
+        server.on("listening", () => {
+            console.log(`And we're off on ${portName}`);
+        });
+
+        server.listen(port);
+
+    }
+
+    /**
+     * This class is never instantiated.
+     */
+    private constructor() {}
+
 }
 
-const port = normalizePort(process.env.PORT || "3000");
-const portName = typeof port === "string"
-    ? `pipe ${port}`
-    : `port ${port}`;
+E.run();
 
-const server = http.createServer(app);
 
-server.on("error", (error) => {
-    if ((error as any).syscall !== "listen") {
-        throw error;
-    }
 
-    switch ((error as any).code) {
-        case "EACCES":
-            throw new Error(`You do not have permission to use ${portName}. Did you mean to \`sudo\`?`);
-        case "EADDRINUSE":
-            throw new Error(`Something is already using ${portName}. Maybe \`killall node\`?`);
-        default:
-            throw error;
-    }
-});
-
-server.on("listening", () => {
-    log(`And we're off on ${portName}`);
-});
-
-server.listen(port);
+export default E;
