@@ -31,6 +31,9 @@ class E {
         }
     }
 
+    /**
+     * Runs the server.
+     */
     public static run() {
 
         const port = E.normalizePort(process.env.PORT || "3000");

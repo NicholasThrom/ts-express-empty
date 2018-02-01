@@ -3,6 +3,7 @@
         "module": "CommonJS",
         "moduleResolution": "Node",
         "removeComments": true,
+        "inlineSourceMap": true,
         "strict": true,
         "target": "ES6",
         "typeRoots": ["node_modules/@types"]
