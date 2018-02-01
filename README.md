@@ -31,7 +31,7 @@ Anyone may use this repository as a starting point without giving credit. You ma
 - Framework – [Express](https://expressjs.com/)
 - Template engine – [Pug](https://pugjs.org/)
 - CSS preprocessor – [Less](http://lesscss.org/)
-- Testing framework – [Mocha](https://mochajs.org/) and [Sinon](http://sinonjs.org/)
+- Testing framework – [Mocha](https://mochajs.org/), [Sinon](http://sinonjs.org/), [Chai](http://chaijs.com/), and [Istanbul](https://istanbul.js.org/).
 - Linters – [tslint](https://palantir.github.io/tslint/) and [pug-lint](https://github.com/pugjs/pug-lint)
 
 For a full list of dependencies just read `package.json`.
