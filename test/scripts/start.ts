@@ -259,10 +259,8 @@ describe("scripts/start.ts", function () {
 
     describe("#constructor()", function () {
 
-        it("should not do anything", function () {
-            const start = Reflect.construct(Start, []);
-
-            chai.assert.deepEqual(start, {});
+        it("should not be instantiable", function () {
+            chai.assert.throws(() => { Reflect.construct(Start, []); });
         });
 
     });

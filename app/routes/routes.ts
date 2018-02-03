@@ -34,7 +34,9 @@ class E {
     /**
      * This class is never instantiated.
      */
-    private constructor() {}
+    private constructor() {
+        throw new Error("This class cannot be instantiated");
+    }
 
 }
 
