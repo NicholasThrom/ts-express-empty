@@ -65,7 +65,8 @@
         "exclude": [
             "**/*.d.ts",
             "app/public/scripts/*.js",
-            "test/**/*"
+            "test/**/*",
+            "coverage/**/*"
         ],
         "reporter": [
             "html",
