@@ -3,12 +3,14 @@
 //
 
 import * as chai from "chai";
-import * as http from "http";
 import "mocha";
 import * as sinon from "sinon";
-
 const sandbox = sinon.sandbox.create();
 
+// External imports
+import * as http from "http";
+
+// Internal imports
 import App from "../../app/app";
 import Log from "../../modules/log/log";
 
@@ -18,9 +20,12 @@ sandbox.stub(http, "createServer").returns({
     listen() {},
 });
 
+// Subject
 import Start from "../../scripts/start";
 
 sandbox.restore();
+
+
 
 describe("scripts/start.ts", function () {
 
@@ -214,7 +219,6 @@ describe("scripts/start.ts", function () {
 
         });
 
-
     });
 
     describe("#normalizePort()", function () {
@@ -264,6 +268,5 @@ describe("scripts/start.ts", function () {
         });
 
     });
-
 
 });

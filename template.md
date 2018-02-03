@@ -2,11 +2,11 @@
 
 This is a template for TypeScript files.
 
-Everything that is exported is a type (type, interface, class, or enum). This is not only nice, but also makes testing way easier by ensuring everything is stubbable.
+Everything that is exported is a type (type, interface, class, or enum). This is not only nice, but also makes testing easier by ensuring everything is stubbable.
 
 Any code that needs to be run on the creation of the file is put in `init()`, or a similar suitably named function somewhere. This ensures that the initialization code can be run more than once for testing purposes, and makes it easy to convert things to `async`/`await` functions.
 
-```js
+```typescript
 //
 // Description of file.
 //
@@ -47,4 +47,40 @@ E.init();
 
 
 export default E;
+```
+
+Testing template:
+
+```typescript
+//
+// Tests some/file.ts
+//
+
+import * as chai from "chai";
+import "mocha";
+import * as sinon from "sinon";
+const sandbox = sinon.sandbox.create();
+
+// External imports
+import "something";
+
+// Internal imports
+import "something/something";
+
+// Subject
+import "subject";
+
+
+
+describe("some/file.ts", function () {
+
+    afterEach(function () {
+        sandbox.restore();
+    });
+
+    it("should exist", function () {
+        chai.assert(subject);
+    });
+
+});
 ```
