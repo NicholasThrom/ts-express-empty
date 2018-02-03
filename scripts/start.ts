@@ -8,6 +8,7 @@ import * as http from "http";
 
 // Internal imports.
 import app from "../app/app";
+import Log from "../modules/log/log";
 
 
 
@@ -60,7 +61,7 @@ class E {
         });
 
         server.on("listening", () => {
-            console.log(`And we're off on ${portName}`);
+            Log.log(`And we're off on ${portName}`);
         });
 
         server.listen(port);
