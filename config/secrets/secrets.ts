@@ -14,25 +14,27 @@ import * as path from "path";
 class E {
 
     /**
-     * Throws an error with the specified problem and advises the user to look at
-     * readme.
+     * This holds a random string with which to sign cookies.
+     */
+    public static cookieSecret: string;
+
+    /**
+     * Throws an error with the specified problem and advises the user to look
+     * at readme.
      */
     private static problem(problem: string): never {
         throw new Error(`${problem} See config/secrets/README.md.`);
     }
 
     /**
-     * This holds a random string with which to sign cookies.
+     * Gets the json in the secrets.json file. Throws nice errors if there is a
+     * problem.
      */
-    public static cookieSecret: string;
+    private static getSecrets(): any {
 
-    /**
-     * Initializes this class.
-     * For unit tests only – do not call.
-     */
-    public static init() {
-
-        /** The contents of secrets.json before parsing. */
+        /**
+         * The contents of secrets.json before parsing.
+         */
         let secretsString: string | undefined;
 
         try {
@@ -42,12 +44,14 @@ class E {
                 throw e;
             }
 
-            // This extraneous throw convinces the ts compiler that this catch always
+            // The extraneous throw convinces the ts compiler that this catch always
             // throws, even though problem returns `never`.
             throw E.problem("Cannot find a config/secrets/secrets.json file.");
         }
 
-        /** The contents of the secrets.json file after parsing. */
+        /**
+         * The contents of the secrets.json file after parsing.
+         */
         let secrets: any;
 
         try {
@@ -59,6 +63,18 @@ class E {
 
             E.problem("The secrets.json file is not valid json.");
         }
+
+        return secrets;
+
+    }
+
+    /**
+     * Initializes this class.
+     * For unit tests only – do not call.
+     */
+    public static init() {
+
+        const secrets = this.getSecrets();
 
         /** A cookie-signing string before typechecking. */
         const untypedCookieSecret = secrets.cookieSecret;

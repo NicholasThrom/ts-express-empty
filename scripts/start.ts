@@ -18,10 +18,8 @@ import Log from "../modules/log/log";
 class E {
 
     /**
-     * Converts the port string to a number, if it is a strictly positive integer,
-     * otherwise returns it as a string.
-     * @param {string} port The port to convert.
-     * @returns {string | number} A value for the port that can be listened to.
+     * Converts the port string to a number, if it is a strictly positive
+     * integer, otherwise returns it as a string.
      */
     private static normalizePort(port: string) {
         const portNumber = parseInt(port, 10);
