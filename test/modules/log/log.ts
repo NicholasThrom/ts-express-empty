@@ -24,16 +24,19 @@ describe("module/log/log.ts", function () {
 
     describe("#log()", function () {
 
-        let logSpy: sinon.SinonSpy;
+        let logStub: sinon.SinonSpy;
 
         beforeEach(function () {
-            logSpy = sandbox.spy(console, "log");
+            logStub = sandbox.stub(console, "log");
         });
 
         it("should call console.log", function () {
             Log.log();
 
-            chai.assert(logSpy.calledOnce);
+            chai.assert(logStub.calledOnce);
+
+            // This is called so the result of the test is output.
+            sandbox.restore();
         });
 
         it("should call console.log with a single string argument", function () {
@@ -41,9 +44,11 @@ describe("module/log/log.ts", function () {
             Log.log(...args);
 
             chai.assert.deepEqual(
-                logSpy.firstCall.args,
+                logStub.firstCall.args,
                 args,
             );
+
+            sandbox.restore();
         });
 
         it("should call console.log with multiple string arguments", function () {
@@ -51,9 +56,11 @@ describe("module/log/log.ts", function () {
             Log.log(...args);
 
             chai.assert.deepEqual(
-                logSpy.firstCall.args,
+                logStub.firstCall.args,
                 args,
             );
+
+            sandbox.restore();
         });
 
         it("should call console.log with complex arguments", function () {
@@ -61,9 +68,11 @@ describe("module/log/log.ts", function () {
             Log.log(...args);
 
             chai.assert.deepEqual(
-                logSpy.firstCall.args,
+                logStub.firstCall.args,
                 args,
             );
+
+            sandbox.restore();
         });
 
     });
