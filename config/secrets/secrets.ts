@@ -30,15 +30,17 @@ class E {
      * Gets the json in the secrets.json file. Throws nice errors if there is a
      * problem.
      */
-    private static getSecrets(): any {
+    private static getSecrets() {
 
         /**
          * The contents of secrets.json before parsing.
          */
         let secretsString: string | undefined;
 
+        const secretsPath = path.join(__dirname, "secrets.json");
+
         try {
-            secretsString = fs.readFileSync(path.join(__dirname, "secrets.json"), "utf8");
+            secretsString = fs.readFileSync(secretsPath, "utf8");
         } catch (e) {
             if (!(e.code === "ENOENT")) {
                 throw e;
@@ -46,7 +48,7 @@ class E {
 
             // The extraneous throw convinces the ts compiler that this catch always
             // throws, even though problem returns `never`.
-            throw E.problem("Cannot find a config/secrets/secrets.json file.");
+            throw E.problem(`Cannot find a ${secretsPath} file.`);
         }
 
         /**
@@ -61,11 +63,30 @@ class E {
                 throw e;
             }
 
-            E.problem("The secrets.json file is not valid json.");
+            throw E.problem("The secrets.json file is not valid json.");
         }
 
-        return secrets;
+        if (typeof secrets !== "object") {
+            throw E.problem(`The secrets.json file must hold an object, not ${secrets}`);
+        }
 
+        // Logically this is the only possible thing in a json object.
+        return secrets as {[_: string]: any};
+
+    }
+
+    /**
+     * Pulls the cookie secret out of the passed `secrets`.
+     */
+    private static extractCookieSecret(secrets: {[_: string]: any}) {
+        /** A cookie-signing string before typechecking. */
+        const cookieSecret = secrets.cookieSecret;
+
+        if (typeof cookieSecret !== "string") {
+            throw E.problem(`The secrets.json's \"cookieSecret\" holds ${cookieSecret} instead of a string.`);
+        }
+
+        return cookieSecret;
     }
 
     /**
@@ -76,14 +97,7 @@ class E {
 
         const secrets = this.getSecrets();
 
-        /** A cookie-signing string before typechecking. */
-        const untypedCookieSecret = secrets.cookieSecret;
-
-        if (typeof untypedCookieSecret !== "string") {
-            throw E.problem(`The secrets.json's \"cookieSecret\" holds ${untypedCookieSecret} instead of a string.`);
-        }
-
-        E.cookieSecret = untypedCookieSecret;
+        E.cookieSecret = E.extractCookieSecret(secrets);
 
     }
 
