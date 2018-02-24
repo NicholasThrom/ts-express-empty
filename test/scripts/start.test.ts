@@ -37,7 +37,7 @@ describe("scripts/start.ts", function () {
         sinon.assert.pass(Start);
     });
 
-    describe("#run()", function () {
+    describe(".run()", function () {
 
         let createServerStub: sinon.SinonStub;
         let onSpy: sinon.SinonSpy;
@@ -221,7 +221,7 @@ describe("scripts/start.ts", function () {
 
     });
 
-    describe("#normalizePort()", function () {
+    describe(".normalizePort()", function () {
 
         it("should return a number if the string is a positive number", function () {
             const port = Start["normalizePort"]("42");
@@ -261,7 +261,7 @@ describe("scripts/start.ts", function () {
 
     });
 
-    describe("#constructor()", function () {
+    describe(".constructor()", function () {
 
         it("should not be instantiable", function () {
             chai.assert.throws(() => { Reflect.construct(Start, []); });

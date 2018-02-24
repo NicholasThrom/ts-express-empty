@@ -22,7 +22,7 @@ describe("module/log/log.ts", function () {
         chai.assert(Log);
     });
 
-    describe("#log()", function () {
+    describe(".log()", function () {
 
         let logStub: sinon.SinonSpy;
 
@@ -77,7 +77,7 @@ describe("module/log/log.ts", function () {
 
     });
 
-    describe("#constructor()", function () {
+    describe(".constructor()", function () {
 
         it("should not be instantiable", function () {
             chai.assert.throws(() => { Reflect.construct(Log, []); });
