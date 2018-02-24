@@ -17,7 +17,7 @@ This file will have the following format:
 Obviously do not use the placeholder `"random string of characters"`. If you need to generate a random string of characters, running the following in a console somewhere.
 
 ```javascript
-let letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
 let string = "";
 for (let i = 0; i < 64; i++) {
     string.push(letters[Math.floor(Math.random() * 52)]);
