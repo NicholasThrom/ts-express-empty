@@ -45,11 +45,11 @@ describe("scripts/start.ts", function () {
         let oldPort: string | undefined;
 
         beforeEach(function () {
-            onSpy = sandbox.spy();
             listenSpy = sandbox.spy();
+            onSpy = sandbox.spy();
             createServerStub = sandbox.stub(http, "createServer").returns({
-                on: onSpy,
                 listen: listenSpy,
+                on: onSpy,
             });
 
             oldPort = process.env.PORT;
@@ -96,7 +96,6 @@ describe("scripts/start.ts", function () {
         });
 
         it("should call listen with a custom port", function () {
-            const oldPort = process.env.PORT;
             process.env.PORT = "4000";
 
             Start.run();
