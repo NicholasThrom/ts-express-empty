@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "noEmit": true,
         "module": "CommonJS",
         "moduleResolution": "Node",
         "removeComments": true,
