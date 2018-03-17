@@ -5,7 +5,7 @@ const sandbox = sinon.sandbox.create();
 
 import * as http from "http";
 
-import App from "../../app/app";
+import { App } from "../../app/app";
 import { Logger } from "../../modules/log/log";
 
 // Make sure nothing happens on import.
@@ -62,7 +62,7 @@ describe("scripts/start.ts", function () {
             chai.assert(createServerStub.calledOnce);
         });
 
-        it("should call createServer on app.app", function () {
+        it("should call createServer on App.app", function () {
             Start.run();
 
             chai.assert.deepEqual(
