@@ -3,19 +3,15 @@
 // www.npmjs.com/package/express-generator
 //
 
-// External imports.
 import * as http from "http";
 
-// Internal imports.
 import app from "../app/app";
 import Log from "../modules/log/log";
 
-
-
 /**
- * The class to be exported.
+ * Starts the app.
  */
-class E {
+class Start {
 
     /**
      * Converts the port string to a number, if it is a strictly positive
@@ -35,7 +31,7 @@ class E {
      */
     public static run() {
 
-        const port = E.normalizePort(process.env.PORT || "3000");
+        const port = Start.normalizePort(process.env.PORT || "3000");
 
         const portName = typeof port === "string"
             ? `pipe ${port}`
@@ -75,8 +71,6 @@ class E {
 
 }
 
-E.run();
+Start.run();
 
-
-
-export default E;
+export { Start };
