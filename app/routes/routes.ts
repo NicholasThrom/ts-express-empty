@@ -1,6 +1,6 @@
 import * as express from "express";
 
-import home from "./home/home";
+import { Home } from "./home/home";
 
 /**
  * The top of all the routes.
@@ -19,7 +19,7 @@ class Routes {
      */
     public static init() {
 
-        Routes.router.use("/", home.router);
+        Routes.router.use("/", Home.router);
 
     }
 

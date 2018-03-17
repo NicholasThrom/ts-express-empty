@@ -1,18 +1,9 @@
-//
-// The home router.
-//
-
-// External imports.
 import * as express from "express";
 
-// Internal imports.
-
-
-
 /**
- * The class to be exported.
+ * The home router.
  */
-class E {
+class Home {
 
     public static readonly router = express.Router();
 
@@ -21,7 +12,7 @@ class E {
      * For unit tests only – do not call.
      */
     public static init() {
-        E.router.use("/", (req, res) => {
+        Home.router.use("/", (req, res) => {
             res.render("super");
         });
     }
@@ -35,8 +26,8 @@ class E {
 
 }
 
-E.init();
+Home.init();
 
 
 
-export default E;
+export { Home };
