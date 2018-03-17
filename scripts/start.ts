@@ -1,6 +1,6 @@
 //
-// This script was inspired by (read: stolen from)
-// https://www.npmjs.com/package/express-generator.
+// This script was inspired by
+// www.npmjs.com/package/express-generator
 //
 
 // External imports.

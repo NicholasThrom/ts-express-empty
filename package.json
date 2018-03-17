@@ -4,9 +4,9 @@
     "description": "Just an empty ts/express app to save some time setting up.",
     "main": "index.js",
     "scripts": {
-        "start": "node ./scripts/start.js",
+        "start": "ts-node ./scripts/start",
         "test": "mocha",
-        "testing": "mocha -r ts-node/register -require source-map-support/register -w",
+        "testing": "watch 'npm run test -s' -d ./",
         "compile": "tsc && npm run concatenate -s",
         "compiling": "npm run concatenating -s & tsc -w",
         "coverage": "nyc npm test -s",

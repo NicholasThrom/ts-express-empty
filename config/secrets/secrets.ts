@@ -37,7 +37,7 @@ class E {
          */
         let secretsString: string | undefined;
 
-        const secretsPath = path.join(__dirname, "secrets.json");
+        const secretsPath = path.join(__dirname, "secrets-data.json");
 
         try {
             secretsString = fs.readFileSync(secretsPath, "utf8");
