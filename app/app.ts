@@ -8,7 +8,7 @@ import * as path from "path";
 
 import { Secrets } from "../config/secrets/secrets";
 import { HTTPError } from "../modules/types/types";
-import routes from "./routes/routes";
+import { Routes } from "./routes/routes";
 
 /**
  * The whole app.
@@ -40,7 +40,7 @@ class App {
 
 
         // Main app
-        App.app.use("/", routes.router);
+        App.app.use("/", Routes.router);
 
 
 

@@ -1,20 +1,12 @@
-//
-// The top of all the routes.
-// It doesn't do anything but link to other routers.
-//
-
-// External imports.
 import * as express from "express";
 
-// Internal imports.
 import home from "./home/home";
 
-
-
 /**
- * The class to be exported.
+ * The top of all the routes.
+ * It only links to other routers.
  */
-class E {
+class Routes {
 
     /**
      * The top level router.
@@ -27,7 +19,7 @@ class E {
      */
     public static init() {
 
-        E.router.use("/", home.router);
+        Routes.router.use("/", home.router);
 
     }
 
@@ -40,8 +32,6 @@ class E {
 
 }
 
-E.init();
+Routes.init();
 
-
-
-export default E;
+export { Routes };
