@@ -52,10 +52,10 @@ class E {
 
 
         // Error handling
-        E.app.use((req, res, next) => {
+        E.app.use(() => {
             const error = new HTTPError("Page not found");
             error.status = 404;
-            next(error);
+            throw error;
         });
 
         // Typescript apparently is incapable of working out these types for itself.
