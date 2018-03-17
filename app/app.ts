@@ -11,7 +11,7 @@ import * as morgan from "morgan";
 import * as path from "path";
 
 // Internal imports.
-import secrets from "../config/secrets/secrets";
+import { Secrets } from "../config/secrets/secrets";
 import { HTTPError } from "../modules/types/types";
 import routes from "./routes/routes";
 
@@ -40,7 +40,7 @@ class E {
         E.app.use(morgan("dev"));
         E.app.use(bodyParser.json());
         E.app.use(bodyParser.urlencoded({ extended: true }));
-        E.app.use(cookieParser(secrets.cookieSecret));
+        E.app.use(cookieParser(Secrets.cookieSecret));
         E.app.use("/public", lessMiddleware(path.join(__dirname, "public")));
         E.app.use("/public", express.static(path.join(__dirname, "public")));
 

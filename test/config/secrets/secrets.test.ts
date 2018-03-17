@@ -19,7 +19,7 @@ readFileSyncStub.withArgs(sinon.match(/.*secrets\.json/), "utf8").returns(`
 readFileSyncStub.callThrough();
 
 // Subject
-import Secrets from "../../../config/secrets/secrets";
+import { Secrets } from "../../../config/secrets/secrets";
 
 sandbox.restore();
 
