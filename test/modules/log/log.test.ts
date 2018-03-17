@@ -1,16 +1,9 @@
-//
-// Tests module/log/log.ts
-//
-
 import * as chai from "chai";
 import "mocha";
 import * as sinon from "sinon";
 const sandbox = sinon.sandbox.create();
 
-// Subject
-import Log from "../../../modules/log/log";
-
-
+import { Logger } from "../../../modules/log/log";
 
 describe("module/log/log.ts", function () {
 
@@ -19,7 +12,7 @@ describe("module/log/log.ts", function () {
     });
 
     it("should exist", function () {
-        chai.assert(Log);
+        chai.assert(Logger);
     });
 
     describe(".log()", function () {
@@ -31,7 +24,7 @@ describe("module/log/log.ts", function () {
         });
 
         it("should call console.log", function () {
-            Log.log();
+            Logger.log();
 
             chai.assert(logStub.calledOnce);
 
@@ -41,7 +34,7 @@ describe("module/log/log.ts", function () {
 
         it("should call console.log with a single string argument", function () {
             const args = ["string"];
-            Log.log(...args);
+            Logger.log(...args);
 
             chai.assert.deepEqual(
                 logStub.firstCall.args,
@@ -53,7 +46,7 @@ describe("module/log/log.ts", function () {
 
         it("should call console.log with multiple string arguments", function () {
             const args = ["string", "another string"];
-            Log.log(...args);
+            Logger.log(...args);
 
             chai.assert.deepEqual(
                 logStub.firstCall.args,
@@ -65,7 +58,7 @@ describe("module/log/log.ts", function () {
 
         it("should call console.log with complex arguments", function () {
             const args = [{ id: 7 }, [[[3], 3]]];
-            Log.log(...args);
+            Logger.log(...args);
 
             chai.assert.deepEqual(
                 logStub.firstCall.args,
@@ -80,7 +73,7 @@ describe("module/log/log.ts", function () {
     describe(".constructor()", function () {
 
         it("should not be instantiable", function () {
-            chai.assert.throws(() => { Reflect.construct(Log, []); });
+            chai.assert.throws(() => { Reflect.construct(Logger, []); });
         });
 
     });

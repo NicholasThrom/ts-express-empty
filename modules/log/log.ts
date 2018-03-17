@@ -1,16 +1,10 @@
-//
-// A logger replacement for console.log. This is primarily so that tests can
-// safely stub logging without losing test logs.
-//
-
-
 /**
- * The class to be exported.
+ * Has logging utilities.
  */
-class E {
-
-    // Other values.
-
+class Logger {
+    /**
+     * Logs the specified messages.
+     */
     public static log(...messages: any[]) {
         console.log(...messages);
     }
@@ -19,10 +13,10 @@ class E {
      * This class is never instantiated.
      */
     private constructor() {
-        throw new Error("This class cannot be instantiated");
+        throw new Error("This class cannot be instantiated.");
     }
 
 }
 
 
-export default E;
+export { Logger };

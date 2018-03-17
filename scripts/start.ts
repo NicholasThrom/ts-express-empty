@@ -6,7 +6,7 @@
 import * as http from "http";
 
 import app from "../app/app";
-import Log from "../modules/log/log";
+import { Logger } from "../modules/log/log";
 
 /**
  * Starts the app.
@@ -55,7 +55,7 @@ class Start {
         });
 
         server.on("listening", () => {
-            Log.log(`And we're off on ${portName}`);
+            Logger.log(`And we're off on ${portName}`);
         });
 
         server.listen(port);

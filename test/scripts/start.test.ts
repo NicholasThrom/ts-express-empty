@@ -6,7 +6,7 @@ const sandbox = sinon.sandbox.create();
 import * as http from "http";
 
 import App from "../../app/app";
-import Log from "../../modules/log/log";
+import { Logger } from "../../modules/log/log";
 
 // Make sure nothing happens on import.
 sandbox.stub(http, "createServer").returns({
@@ -117,7 +117,7 @@ describe("scripts/start.ts", function () {
             });
 
             it("should call logging function in passed function", function () {
-                const logStub = sandbox.stub(Log, "log");
+                const logStub = sandbox.stub(Logger, "log");
 
                 Start.run();
 
@@ -127,7 +127,7 @@ describe("scripts/start.ts", function () {
             });
 
             it("should log numeric port in passed function", function () {
-                const logStub = sandbox.stub(Log, "log");
+                const logStub = sandbox.stub(Logger, "log");
                 process.env.PORT = "4000";
 
                 Start.run();
@@ -139,7 +139,7 @@ describe("scripts/start.ts", function () {
             });
 
             it("should log string port in passed function", function () {
-                const logStub = sandbox.stub(Log, "log");
+                const logStub = sandbox.stub(Logger, "log");
                 process.env.PORT = "some port";
 
                 Start.run();
