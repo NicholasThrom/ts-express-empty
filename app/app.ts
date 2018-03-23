@@ -11,15 +11,17 @@ import { HTTPError } from "../modules/types/types";
 import { Routes } from "./routes/routes";
 
 /**
+ * **uninstantiable**
+ *
  * The whole app.
  */
 class App {
 
     /**
-     * The express application.
+     * **mutates arguments**
+     *
+     * Sets up the middleware on the specified express app.
      */
-    public readonly app = express();
-
     private static setUpMiddleware(app: express.Application) {
         app.set("views", path.join(__dirname, "views"));
         app.set("view engine", "pug");
@@ -32,13 +34,22 @@ class App {
         app.use("/public", express.static(path.join(__dirname, "public")));
     }
 
+    /**
+     * The last `Handler`, to catch any requests that none of the other
+     * `Handler`s caught.
+     */
     private static readonly pageNotFoundHandler: express.Handler = () => {
         const error = new HTTPError("Page not found");
         error.status = 404;
         throw error;
     }
 
-    private static readonly onError: express.ErrorRequestHandler = (
+    /**
+     * The error handler.
+     *
+     * If an error occurs, this function responds appropriately.
+     */
+    private static readonly errorHandler: express.ErrorRequestHandler = (
         err: any,
         req: express.Request,
         res: express.Response,
@@ -53,6 +64,14 @@ class App {
         res.send(err.message);
     }
 
+    /**
+     * **no side effects**,
+     * **deterministic**
+     *
+     * Gets and sets up the express app.
+     *
+     * Does not do anything with the app.
+     */
     public static getApp() {
         const app = express();
 
@@ -60,7 +79,7 @@ class App {
 
         app.use("/", Routes.router);
         app.use(App.pageNotFoundHandler);
-        app.use(App.onError);
+        app.use(App.errorHandler);
 
         return app;
     }
@@ -73,6 +92,7 @@ class App {
     }
 
 }
+
 
 
 export { App };

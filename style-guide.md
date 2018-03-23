@@ -77,6 +77,7 @@ If an adjective seems useful but is not in this list,
 add it to this list.
 
 **Types:**
+- **uninstantiable**: It cannot be instantiated.
 - **immutable**: Its members cannot be changed
     after its construction.
 - **mutable**: Its members can be changed
