@@ -37,7 +37,7 @@ class Start {
             ? `pipe ${port}`
             : `port ${port}`;
 
-        const server = http.createServer(App.app);
+        const server = http.createServer(App.getApp());
 
         server.on("error", (error) => {
             if ((error as any).syscall !== "listen") {

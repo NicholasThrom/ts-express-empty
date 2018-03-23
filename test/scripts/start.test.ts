@@ -1,8 +1,9 @@
-import * as chai from "chai";
+import { assert } from "chai";
 import "mocha";
-import * as sinon from "sinon";
-const sandbox = sinon.sandbox.create();
+import { match, sandbox as sandboxFactory, SinonSpy, SinonStub } from "sinon";
+const sandbox = sandboxFactory.create();
 
+import * as express from "express";
 import * as http from "http";
 
 import { App } from "../../app/app";
@@ -25,14 +26,14 @@ describe("scripts/start.ts", function () {
     });
 
     it("should exist", function () {
-        sinon.assert.pass(Start);
+        assert.exists(Start);
     });
 
     describe(".run()", function () {
 
-        let createServerStub: sinon.SinonStub;
-        let onSpy: sinon.SinonSpy;
-        let listenSpy: sinon.SinonSpy;
+        let createServerStub: SinonStub;
+        let onSpy: SinonSpy;
+        let listenSpy: SinonSpy;
         let oldPort: string | undefined;
 
         beforeEach(function () {
@@ -59,31 +60,19 @@ describe("scripts/start.ts", function () {
         it("should call createServer once", function () {
             Start.run();
 
-            chai.assert(createServerStub.calledOnce);
-        });
-
-        it("should call createServer on App.app", function () {
-            Start.run();
-
-            chai.assert.deepEqual(
-                createServerStub.firstCall.args,
-                [App.app],
-            );
+            assert.strictEqual(createServerStub.callCount, 1);
         });
 
         it("should call listen once", function () {
             Start.run();
 
-            chai.assert(listenSpy.calledOnce);
+            assert.strictEqual(listenSpy.callCount, 1);
         });
 
         it("should call listen with the default port 3000", function () {
             Start.run();
 
-            chai.assert.deepEqual(
-                listenSpy.firstCall.args,
-                [3000],
-            );
+            assert.strictEqual(listenSpy.firstCall.args[0], 3000);
         });
 
         it("should call listen with a custom port", function () {
@@ -91,10 +80,7 @@ describe("scripts/start.ts", function () {
 
             Start.run();
 
-            chai.assert.deepEqual(
-                listenSpy.firstCall.args,
-                [4000],
-            );
+            assert.strictEqual(listenSpy.firstCall.args[0], 4000);
         });
 
         it("should call listen with a custom non-numeric port", function () {
@@ -102,10 +88,7 @@ describe("scripts/start.ts", function () {
 
             Start.run();
 
-            chai.assert.deepEqual(
-                listenSpy.firstCall.args,
-                ["some string"],
-            );
+            assert.strictEqual(listenSpy.firstCall.args[0], "some string");
         });
 
         describe("on(\"listen\")", function () {
@@ -113,7 +96,7 @@ describe("scripts/start.ts", function () {
             it("should call on(\"listen\") once", function () {
                 Start.run();
 
-                chai.assert(onSpy.withArgs("listening", sinon.match.func).calledOnce);
+                assert(onSpy.withArgs("listening", match.func).calledOnce);
             });
 
             it("should call logging function in passed function", function () {
@@ -121,9 +104,9 @@ describe("scripts/start.ts", function () {
 
                 Start.run();
 
-                const onFunction = onSpy.withArgs("listening", sinon.match.func).firstCall.args[1];
+                const onFunction = onSpy.withArgs("listening", match.func).firstCall.args[1];
                 onFunction();
-                chai.assert(logStub.calledOnce);
+                assert(logStub.calledOnce);
             });
 
             it("should log numeric port in passed function", function () {
@@ -132,10 +115,10 @@ describe("scripts/start.ts", function () {
 
                 Start.run();
 
-                const onFunction = onSpy.withArgs("listening", sinon.match.func).firstCall.args[1];
+                const onFunction = onSpy.withArgs("listening", match.func).firstCall.args[1];
                 onFunction();
 
-                chai.assert.match(logStub.firstCall.args[0], /port 4000/);
+                assert.match(logStub.firstCall.args[0], /port 4000/);
             });
 
             it("should log string port in passed function", function () {
@@ -144,10 +127,10 @@ describe("scripts/start.ts", function () {
 
                 Start.run();
 
-                const onFunction = onSpy.withArgs("listening", sinon.match.func).firstCall.args[1];
+                const onFunction = onSpy.withArgs("listening", match.func).firstCall.args[1];
                 onFunction();
 
-                chai.assert.match(logStub.firstCall.args[0], /pipe some port/);
+                assert.match(logStub.firstCall.args[0], /pipe some port/);
             });
 
         });
@@ -157,7 +140,7 @@ describe("scripts/start.ts", function () {
             it("should call on(\"error\") once", function () {
                 Start.run();
 
-                chai.assert(onSpy.withArgs("error", sinon.match.func).calledOnce);
+                assert(onSpy.withArgs("error", match.func).calledOnce);
             });
 
             it("should rethrow unrecognized errors in passed function", function () {
@@ -166,9 +149,9 @@ describe("scripts/start.ts", function () {
 
                 Start.run();
 
-                const errorFunction = onSpy.withArgs("error", sinon.match.func).firstCall.args[1];
+                const errorFunction = onSpy.withArgs("error", match.func).firstCall.args[1];
 
-                chai.assert.throws(() => { errorFunction(error); }, errorMessage);
+                assert.throws(() => { errorFunction(error); }, errorMessage);
             });
 
             it("should throw improved errors for \"EACCES\"", function () {
@@ -179,8 +162,8 @@ describe("scripts/start.ts", function () {
 
                 Start.run();
 
-                const errorFunction = onSpy.withArgs("error", sinon.match.func).firstCall.args[1];
-                chai.assert.throws(() => { errorFunction(error); }, /permission/);
+                const errorFunction = onSpy.withArgs("error", match.func).firstCall.args[1];
+                assert.throws(() => { errorFunction(error); }, /permission/);
             });
 
             it("should throw improved errors for \"EADDRINUSE\"", function () {
@@ -191,8 +174,8 @@ describe("scripts/start.ts", function () {
 
                 Start.run();
 
-                const errorFunction = onSpy.withArgs("error", sinon.match.func).firstCall.args[1];
-                chai.assert.throws(() => { errorFunction(error); }, /(using)|(use)/);
+                const errorFunction = onSpy.withArgs("error", match.func).firstCall.args[1];
+                assert.throws(() => { errorFunction(error); }, /(using)|(use)/);
             });
 
             it("should rethrow errors with \"listen\" syscall but unknown code", function () {
@@ -203,8 +186,8 @@ describe("scripts/start.ts", function () {
 
                 Start.run();
 
-                const errorFunction = onSpy.withArgs("error", sinon.match.func).firstCall.args[1];
-                chai.assert.throws(() => { errorFunction(error); }, errorMessage);
+                const errorFunction = onSpy.withArgs("error", match.func).firstCall.args[1];
+                assert.throws(() => { errorFunction(error); }, errorMessage);
             });
 
         });
@@ -216,37 +199,37 @@ describe("scripts/start.ts", function () {
         it("should return a number if the string is a positive number", function () {
             const port = Start["normalizePort"]("42");
 
-            chai.assert.strictEqual(port, 42);
+            assert.strictEqual(port, 42);
         });
 
         it("should return a number if the string is 0", function () {
             const port = Start["normalizePort"]("0");
 
-            chai.assert.strictEqual(port, 0);
+            assert.strictEqual(port, 0);
         });
 
         it("should return a string is a non-number", function () {
             const port = Start["normalizePort"]("string");
 
-            chai.assert.strictEqual(port, "string");
+            assert.strictEqual(port, "string");
         });
 
         it("should return a string is NaN", function () {
             const port = Start["normalizePort"]("NaN");
 
-            chai.assert.strictEqual(port, "NaN");
+            assert.strictEqual(port, "NaN");
         });
 
         it("should return a string is \"NaN\"", function () {
             const port = Start["normalizePort"]("NaN");
 
-            chai.assert.strictEqual(port, "NaN");
+            assert.strictEqual(port, "NaN");
         });
 
         it("should return a string is a negative number", function () {
             const port = Start["normalizePort"]("-42");
 
-            chai.assert.strictEqual(port, "-42");
+            assert.strictEqual(port, "-42");
         });
 
     });
@@ -254,7 +237,7 @@ describe("scripts/start.ts", function () {
     describe(".constructor()", function () {
 
         it("should not be instantiable", function () {
-            chai.assert.throws(() => { Reflect.construct(Start, []); });
+            assert.throws(() => { Reflect.construct(Start, []); });
         });
 
     });
