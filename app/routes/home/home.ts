@@ -1,33 +1,33 @@
-import * as express from "express";
+import { Router } from "express";
 
 /**
- * The home router.
+ * **uninstantiable**
+ *
+ * The `Router` for the home page.
  */
 class Home {
 
-    public static readonly router = express.Router();
-
     /**
-     * Initializes this class.
-     * For unit tests only – do not call.
+     * **deterministic**,
+     * **no side effects**
+     *
+     * Gets the `Home` `Router`.
      */
-    public static init() {
-        Home.router.use("/", (req, res) => {
+    public static getRouter() {
+        const router = Router();
+        router.use("/", (req, res) => {
             res.render("super");
         });
+        return router;
     }
 
     /**
-     * This class is never instantiated.
+     * This class cannot be instantiated.
      */
     private constructor() {
-        throw new Error("This class cannot be instantiated");
+        throw new Error("This class cannot be instantiated.");
     }
 
 }
-
-Home.init();
-
-
 
 export { Home };

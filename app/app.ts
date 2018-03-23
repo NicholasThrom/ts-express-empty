@@ -77,7 +77,7 @@ class App {
 
         App.setUpMiddleware(app);
 
-        app.use("/", Routes.router);
+        app.use("/", Routes.getRouter());
         app.use(App.pageNotFoundHandler);
         app.use(App.errorHandler);
 

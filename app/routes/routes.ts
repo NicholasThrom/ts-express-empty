@@ -1,37 +1,34 @@
-import * as express from "express";
-
+import { Router } from "express";
 import { Home } from "./home/home";
 
 /**
+ * **uninstantiable**
+ *
  * The top of all the routes.
- * It only links to other routers.
+ * It only links to other routers,
+ * it doesn't do anything on its own.
  */
 class Routes {
 
     /**
-     * The top level router.
+     * **deterministic**,
+     * **no side effects**
+     *
+     * Gets the top level `Router`.
      */
-    public static readonly router = express.Router();
-
-    /**
-     * Initializes this class.
-     * For unit tests only – do not call.
-     */
-    public static init() {
-
-        Routes.router.use("/", Home.router);
-
+    public static getRouter() {
+        const router = Router();
+        router.use("/", Home.getRouter());
+        return router;
     }
 
     /**
-     * This class is never instantiated.
+     * This class cannot be instantiated.
      */
     private constructor() {
-        throw new Error("This class cannot be instantiated");
+        throw new Error("This class cannot be instantiated.");
     }
 
 }
-
-Routes.init();
 
 export { Routes };
