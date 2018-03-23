@@ -11,6 +11,7 @@ nor better than others.
 - [Markdown](#markdown)
 - [File Structure](#file-structure)
 - [Documentation Comments](#documentation-comments)
+    - [Adjectives](#adjectives)
     - [_"should"_](#should)
     - [Formatting](#formatting)
 - [Comments](#comments)
@@ -66,6 +67,7 @@ at the top of the documentation.
 Each adjective should be lowercase and bold.
 
 The absence of an adjective does not imply its negation.
+Adjectives are not mandatory.
 
 Adjectives should be omitted if they are obvious.
 For example, a function that returns `undefined`
@@ -92,7 +94,13 @@ add it to this list.
     For example: `x => 2 * x`.
 - **side effects**: The method affects the universe.
     Side effects should be further described in documentation.
+    For example: `x => that.y = x`.
+- **mutates this**: The method affects `this`.
+    Side effects should be further described in documentation.
     For example: `x => this.y = x`.
+- **mutates arguments**: The method affects at least one argument.
+    Side effects should be further described in documentation.
+    For example: `x => x.y = 7`.
 - **deterministic**: The method returns the same value
     given the same parameters
     and given the same, unchanged `this`.
