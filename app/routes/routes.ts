@@ -11,6 +11,13 @@ import { Home } from "./home/home";
 class Routes {
 
     /**
+     * This class cannot be instantiated.
+     */
+    private constructor() {
+        throw new Error("This class cannot be instantiated.");
+    }
+
+    /**
      * **deterministic**,
      * **no side effects**
      *
@@ -20,13 +27,6 @@ class Routes {
         const router = Router();
         router.use("/", Home.getRouter());
         return router;
-    }
-
-    /**
-     * This class cannot be instantiated.
-     */
-    private constructor() {
-        throw new Error("This class cannot be instantiated.");
     }
 
 }

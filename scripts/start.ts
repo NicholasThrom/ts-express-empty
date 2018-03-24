@@ -14,6 +14,13 @@ import { Logger } from "../modules/log/log";
 class Start {
 
     /**
+     * This class is never instantiated.
+     */
+    private constructor() {
+        throw new Error("This class cannot be instantiated");
+    }
+
+    /**
      * Converts the port string to a number, if it is a strictly positive
      * integer, otherwise returns it as a string.
      */
@@ -60,13 +67,6 @@ class Start {
 
         server.listen(port);
 
-    }
-
-    /**
-     * This class is never instantiated.
-     */
-    private constructor() {
-        throw new Error("This class cannot be instantiated");
     }
 
 }

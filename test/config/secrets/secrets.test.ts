@@ -23,8 +23,6 @@ import { Secrets } from "../../../config/secrets/secrets";
 
 sandbox.restore();
 
-
-
 describe("config/secrets/secrets.ts", function () {
 
     afterEach(function () {

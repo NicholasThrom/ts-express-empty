@@ -3,10 +3,8 @@ import "mocha";
 import { match, sandbox as sandboxFactory, SinonSpy, SinonStub } from "sinon";
 const sandbox = sandboxFactory.create();
 
-import * as express from "express";
 import * as http from "http";
 
-import { App } from "../../app/app";
 import { Logger } from "../../modules/log/log";
 
 // Make sure nothing happens on import.

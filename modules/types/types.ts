@@ -12,14 +12,14 @@
  * ```
  */
 class HTTPError extends Error {
+
     /**
      * The http status code the error page will return.
      * See https://httpstatuses.com/ for details.
      */
     public status = 500;
+
 }
-
-
 
 export {
     HTTPError,

@@ -2,12 +2,6 @@
  * Has logging utilities.
  */
 class Logger {
-    /**
-     * Logs the specified messages.
-     */
-    public static log(...messages: any[]) {
-        console.log(...messages);
-    }
 
     /**
      * This class is never instantiated.
@@ -16,7 +10,13 @@ class Logger {
         throw new Error("This class cannot be instantiated.");
     }
 
-}
+    /**
+     * Logs the specified messages.
+     */
+    public static log(...messages: any[]) {
+        console.log(...messages);
+    }
 
+}
 
 export { Logger };

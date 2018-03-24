@@ -16,6 +16,13 @@ class Secrets {
     public static cookieSecret: string;
 
     /**
+     * This class is uninstantiable.
+     */
+    private constructor() {
+        throw new Error("This class cannot be instantiated");
+    }
+
+    /**
      * Throws an error with the specified problem
      * and advises the user to look at readme.
      */
@@ -80,16 +87,8 @@ class Secrets {
         Secrets.cookieSecret = Secrets.extractCookieSecret(secrets);
     }
 
-    /**
-     * This class is uninstantiable.
-     */
-    private constructor() {
-        throw new Error("This class cannot be instantiated");
-    }
-
 }
 
 Secrets.init();
-
 
 export { Secrets };

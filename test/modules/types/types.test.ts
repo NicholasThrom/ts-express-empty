@@ -10,8 +10,6 @@ const sandbox = sinon.sandbox.create();
 // Subject
 import { HTTPError } from "../../../modules/types/types";
 
-
-
 describe("modules/types/types.ts", function () {
 
     afterEach(function () {

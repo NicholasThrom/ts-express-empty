@@ -18,6 +18,13 @@ import { Routes } from "./routes/routes";
 class App {
 
     /**
+     * This class cannot be instantiated.
+     */
+    private constructor() {
+        throw new Error("This class cannot be instantiated.");
+    }
+
+    /**
      * **mutates arguments**
      *
      * Sets up the middleware on the specified express app.
@@ -84,15 +91,6 @@ class App {
         return app;
     }
 
-    /**
-     * This class cannot be instantiated.
-     */
-    private constructor() {
-        throw new Error("This class cannot be instantiated.");
-    }
-
 }
-
-
 
 export { App };
