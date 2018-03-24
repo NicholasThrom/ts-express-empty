@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as path from "path";
 
 interface Json {
-    [key: string]: Json
+    [key: string]: Json;
 }
 
 /**

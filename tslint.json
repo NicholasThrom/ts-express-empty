@@ -1,6 +1,7 @@
 {
     "extends": "tslint:recommended",
     "rules": {
+        "array-type": [true, "array"],
         "indent": [true, "spaces", 4],
         "interface-name": [true, "never-prefix"],
         "max-classes-per-file": false,
@@ -34,13 +35,11 @@
         "no-shadowed-variable": false,
         "no-unused-variable": true,
         "object-literal-key-quotes": [true, "as-needed"],
-
         "no-inferrable-types": [true, "ignore-params"],
         "no-internal-module": true,
-        "object-literal-sort-keys": [true, "ignore-case", "match-declaration-order", "shorthand-first"],
         "only-arrow-functions": false,
         "quotemark": [true, "double", "avoid-template"],
-        "semicolon": [true, "always", "ignore-interfaces", "ignore-bound-class-methods"],
+        "semicolon": [true, "always"],
         "space-before-function-paren": [
             true, {
             "anonymous": "always",
