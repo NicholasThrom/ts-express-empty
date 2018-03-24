@@ -1,7 +1,7 @@
-import * as chai from "chai";
+import { assert } from "chai";
 import "mocha";
-import * as sinon from "sinon";
-const sandbox = sinon.sandbox.create();
+import { sandbox as sandboxFactory } from "sinon";
+const sandbox = sandboxFactory.create();
 
 import { Logger } from "../../../modules/log/log";
 
@@ -12,7 +12,7 @@ describe("module/log/log.ts", function () {
     });
 
     it("should exist", function () {
-        chai.assert(Logger);
+        assert.exists(Logger);
     });
 
     describe(".log()", function () {
@@ -26,20 +26,17 @@ describe("module/log/log.ts", function () {
         it("should call console.log", function () {
             Logger.log();
 
-            chai.assert(logStub.calledOnce);
+            assert.strictEqual(logStub.callCount, 1);
 
             // This is called so the result of the test is output.
             sandbox.restore();
         });
 
         it("should call console.log with a single string argument", function () {
-            const args = ["string"];
+            const args = ["any string"];
             Logger.log(...args);
 
-            chai.assert.deepEqual(
-                logStub.firstCall.args,
-                args,
-            );
+            assert.deepEqual(logStub.firstCall.args, args);
 
             sandbox.restore();
         });
@@ -48,10 +45,7 @@ describe("module/log/log.ts", function () {
             const args = ["string", "another string"];
             Logger.log(...args);
 
-            chai.assert.deepEqual(
-                logStub.firstCall.args,
-                args,
-            );
+            assert.deepEqual(logStub.firstCall.args, args);
 
             sandbox.restore();
         });
@@ -60,10 +54,7 @@ describe("module/log/log.ts", function () {
             const args = [{ id: 7 }, [[[3], 3]]];
             Logger.log(...args);
 
-            chai.assert.deepEqual(
-                logStub.firstCall.args,
-                args,
-            );
+            assert.deepEqual(logStub.firstCall.args, args);
 
             sandbox.restore();
         });
@@ -73,7 +64,7 @@ describe("module/log/log.ts", function () {
     describe(".constructor()", function () {
 
         it("should not be instantiable", function () {
-            chai.assert.throws(() => { Reflect.construct(Logger, []); });
+            assert.throws(() => { Reflect.construct(Logger, []); });
         });
 
     });
