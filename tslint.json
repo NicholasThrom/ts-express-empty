@@ -30,6 +30,7 @@
         ],
         "no-consecutive-blank-lines": true,
         "no-console": false,
+        "no-default-export": true,
         "no-empty": false,
         "no-invalid-this": true,
         "no-shadowed-variable": false,
