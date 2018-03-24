@@ -11,16 +11,16 @@ interface Json {
 class Secrets {
 
     /**
-     * A random string with which to sign cookies.
-     */
-    public static cookieSecret: string;
-
-    /**
      * This class is uninstantiable.
      */
     private constructor() {
         throw new Error("This class cannot be instantiated");
     }
+
+    /**
+     * A random string with which to sign cookies.
+     */
+    public static cookieSecret: string;
 
     /**
      * Throws an error with the specified problem

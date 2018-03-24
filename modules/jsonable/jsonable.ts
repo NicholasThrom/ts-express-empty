@@ -3,20 +3,10 @@ interface JSONArray extends Array<any> {}
 
 class JSONable {
 
-    public static readonly undefined = new JSONable(undefined);
-
-    private readonly value: any;
+    public readonly value: any;
 
     public constructor(value: any) {
         this.value = value;
-    }
-
-    public static parse(text: string) {
-        try {
-            return new JSONable(JSON.parse(text));
-        } catch {
-            return JSONable.undefined;
-        }
     }
 
     public get isString() {
@@ -98,4 +88,16 @@ class JSONable {
         }
     }
 
+    public static readonly undefined = new JSONable(undefined);
+
+    public static parse(text: string) {
+        try {
+            return new JSONable(JSON.parse(text));
+        } catch {
+            return JSONable.undefined;
+        }
+    }
+
 }
+
+export { JSONable };
