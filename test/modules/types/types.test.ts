@@ -5,7 +5,7 @@ const sandbox = sandboxFactory.create();
 
 import { HTTPError } from "../../../modules/types/types";
 
-describe("modules/types/types.ts", function () {
+describe("modules/types/types", function () {
 
     afterEach(function () {
         sandbox.restore();

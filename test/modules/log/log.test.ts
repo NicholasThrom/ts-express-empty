@@ -5,7 +5,7 @@ const sandbox = sandboxFactory.create();
 
 import { Logger } from "../../../modules/log/log";
 
-describe("module/log/log.ts", function () {
+describe("module/log/log", function () {
 
     afterEach(function () {
         sandbox.restore();

@@ -17,7 +17,7 @@ import { Start } from "../../scripts/start";
 
 sandbox.restore();
 
-describe("scripts/start.ts", function () {
+describe("scripts/start", function () {
 
     afterEach(function () {
         sandbox.restore();
