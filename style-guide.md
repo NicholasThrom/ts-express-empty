@@ -27,7 +27,7 @@ see what the rest of the code does, make a decision, and add it to this file.
 
 ## Markdown
 
-Lines should not exceed 80 characters.
+Avoid exceeding 80 characters per line.
 This improves diffs.
 
 Break lines in natural places, not just after 80 characters.
@@ -61,15 +61,15 @@ that can quickly be described with a few adjectives.
 This is the general use-case for jsdoc `@annotations`
 but unfortunately not all useful adjectives are supported.
 
-Adjectives should be added in a comma and newline separated list
+Add adjectives in a comma and newline separated list
 at the top of the documentation.
 
-Each adjective should be lowercase and bold.
+Each adjective is be lowercase and bold.
 
 The absence of an adjective does not imply its negation.
 Adjectives are not mandatory.
 
-Adjectives should be omitted if they are obvious.
+Adjectives may be be omitted if they are obvious.
 For example, a function that returns `undefined`
 need not be marked **deterministic**.
 
@@ -92,13 +92,13 @@ No adjectives here yet.
     other than providing a return value.
     For example: `x => 2 * x`.
 - **side effects**: The method affects the universe.
-    Side effects should be further described in documentation.
+    Further describe side effects in documentation.
     For example: `x => that.y = x`.
 - **mutates this**: The method affects `this`.
-    Side effects should be further described in documentation.
+    Further describe side effects in documentation.
     For example: `x => this.y = x`.
 - **mutates argument[s]**: The method affects at least one argument.
-    Side effects should be further described in documentation.
+    Further describe side effects in documentation.
     For example: `x => x.y = 7`.
 - **deterministic**: The method returns the same value
     given the same parameters
@@ -117,7 +117,7 @@ No adjectives here yet.
 - **idempotent return**: If the function is unary,
     the function returns its first argument
     if the first argument is a return value of the function.
-    For example: `x => Math.abs(x)`
+    For example: `x => Math.abs(x)`<br/>
     If the function is 0-ary,
     the function returns an object equivalent to its `this`,
     if its `this` value is a return value of the function.
@@ -125,7 +125,7 @@ No adjectives here yet.
 - **nonidempotent return**: If the function is unary,
     the function might not returns its first argument
     if the first argument is a return value of the function.
-    For example: `x => x + 1`
+    For example: `x => x + 1`<br/>
     If the function is 0-ary,
     the function might not return an object equivalent to its `this`,
     if its `this` value is a return value of the function.
@@ -146,21 +146,21 @@ Did the documenter just proclivity for integers?
 
 Instead of using _"should"_,
 state what happens if the argument is not an integer
-and let the reader decide what they should do based on this behaviour.
+and let the reader decide what to do based on this behaviour.
 Even better, use the word _"must"_ and throw an error if it is not.
 
 ### Formatting
 
-Documentation comments should use markdown.
+Documentation comments may use markdown.
 
-References to other classes should be wrapped in \`\`s.
-Pluralizations of other classes should not be part of \`\`
+Wrap references to other classes in \`\`s.
+Pluralizations of other classes are not part of \`\`
 unless the pluralization does not contain the original word.
 
 For example, `` `Duck`s `` and `` `Geese` ``
 are the plural of `` `Duck` `` and `` `Goose` ``.
 
-References to parts of code should be used whenever possible.
+Use references to parts of code whenever possible.
 For example, `` If the `Animal`s `.canFly` ``
 is preferred to `If the animals can fly`.
 
@@ -182,7 +182,7 @@ If something absolutely must go against `ts-lint`,
 
 `ts-lint` does not enforce the amount of indentation,
 other than ensuring it is divisible by 4.
-Obviously this should not be abused.
+Obviously, do not abuse this.
 
 Where `ts-lint` does not have an opinion,
 choose the most readable option.
@@ -199,7 +199,7 @@ Long descriptive names are preferred to short ambiguous names.
 
 Short descriptive names are preferred to long descriptive names.
 
-Words should not be shortened unless their long form would be surprising.
+Do not shorten words unless their long form would be surprising.
 
 For example, `init`, `url`, and `cos`
 are preferred to `initialize`, `universalResourceLocator`, and `cosine`.
@@ -208,7 +208,7 @@ Since `arguments` is used by the language,
 `args` and `arg` are permitted.
 More expressive names are preferred when possible.
 
-If acronyms must be used, they should be all upper or lower case.
+If acronyms must be used, use all upper or lower case.
 
 For example,
 `nextURL` and `urlOfResource`

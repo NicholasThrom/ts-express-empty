@@ -6,7 +6,7 @@ interface Json {
 }
 
 /**
- * Contains data that should not be checked into version control.
+ * Contains data that must not be checked into version control.
  */
 class Secrets {
 
