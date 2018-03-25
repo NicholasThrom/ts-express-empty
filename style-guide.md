@@ -61,7 +61,7 @@ that can quickly be described with a few adjectives.
 This is the general use-case for jsdoc `@annotations`
 but unfortunately not all useful adjectives are supported.
 
-Adjectives should be added in a comma and newline seperated list
+Adjectives should be added in a comma and newline separated list
 at the top of the documentation.
 
 Each adjective should be lowercase and bold.
@@ -84,12 +84,10 @@ add it to this list.
     after its construction.
 
 **Fields:**
-- **immutable**: Its value cannot be changed
-    after its contain object's construction.
-- **mutable**: Its value can be changed
-    after its contain object's construction.
+No adjectives here yet.
 
 **Methods & Functions:**
+- **pure**: The method has **no side effects** and is **deterministic**.
 - **no side effects**: The method does not affect the universe
     other than providing a return value.
     For example: `x => 2 * x`.
@@ -99,7 +97,7 @@ add it to this list.
 - **mutates this**: The method affects `this`.
     Side effects should be further described in documentation.
     For example: `x => this.y = x`.
-- **mutates arguments**: The method affects at least one argument.
+- **mutates argument[s]**: The method affects at least one argument.
     Side effects should be further described in documentation.
     For example: `x => x.y = 7`.
 - **deterministic**: The method returns the same value
@@ -201,7 +199,7 @@ Long descriptive names are preferred to short ambiguous names.
 
 Short descriptive names are preferred to long descriptive names.
 
-Words should not be shortened unless their long form would be suprising.
+Words should not be shortened unless their long form would be surprising.
 
 For example, `init`, `url`, and `cos`
 are preferred to `initialize`, `universalResourceLocator`, and `cosine`.
@@ -305,7 +303,7 @@ The second line must be blank.
 
 The remaining lines may expand upon the first line.
 
-If changes do not fit together, they must be put them in seperate commits.
+If changes do not fit together, they must be put them in separate commits.
 Commits may be unrelated to the current branch,
 since it is best to fix problems as they are seen.
 
