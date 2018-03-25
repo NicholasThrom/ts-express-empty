@@ -275,9 +275,9 @@ import "mocha";
 import { sandbox as sandboxFactory } from "sinon";
 const sandbox = sandboxFactory.create();
 
-import { Subject } from "file/name";
+import { Subject } from "file";
 
-describe("file/name", function () {
+describe("file", function () {
 
     afterEach(function () {
         sandbox.restore();
