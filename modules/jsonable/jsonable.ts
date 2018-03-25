@@ -1,5 +1,5 @@
 interface JSONObject { [key: string]: any; }
-interface JSONArray extends Array<any> {}
+type JSONArray = any[];
 
 class JSONable {
 
@@ -37,7 +37,7 @@ class JSONable {
         return this.value === null;
     }
 
-    public get isDefined() {
+    public get isUndefined() {
         return this.value === undefined;
     }
 
@@ -46,7 +46,7 @@ class JSONable {
     }
 
     public get array() {
-        if (Array.isArray(this.value)) { return this.value as JSONArray; }
+        if (this.isArray) { return this.value as JSONArray; }
     }
 
     public get isObject() {
@@ -54,9 +54,7 @@ class JSONable {
     }
 
     public get object() {
-        if (this.isObject) {
-            return this.value as JSONObject;
-        }
+        if (this.isObject) { return this.value as JSONObject; }
     }
 
     public getSingle(key: string | number) {
@@ -72,10 +70,10 @@ class JSONable {
     }
 
     public get(...keys: (string | number)[]) {
-        const current = this;
+        let current: JSONable = this;
         for (const key of keys) {
-            const current = this.getSingle(key);
-            if (!current) { return JSONable.undefined; }
+            current = current.getSingle(key);
+            if (current.isUndefined) { return JSONable.undefined; }
         }
         return current;
     }
