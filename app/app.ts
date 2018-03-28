@@ -15,7 +15,7 @@ import { Routes } from "./routes/routes";
  *
  * The whole app.
  */
-class App {
+export class App {
 
     /**
      * This class cannot be instantiated.
@@ -92,5 +92,3 @@ class App {
     }
 
 }
-
-export { App };

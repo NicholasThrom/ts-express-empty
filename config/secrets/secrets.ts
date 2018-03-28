@@ -8,7 +8,7 @@ interface Json {
 /**
  * Contains data that must not be checked into version control.
  */
-class Secrets {
+export class Secrets {
 
     /**
      * This class is uninstantiable.
@@ -90,5 +90,3 @@ class Secrets {
 }
 
 Secrets.init();
-
-export { Secrets };

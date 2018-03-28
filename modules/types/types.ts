@@ -11,7 +11,7 @@
  * });
  * ```
  */
-class HTTPError extends Error {
+export class HTTPError extends Error {
 
     /**
      * The http status code the error page will return.
@@ -20,7 +20,3 @@ class HTTPError extends Error {
     public status = 500;
 
 }
-
-export {
-    HTTPError,
-};

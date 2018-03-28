@@ -11,7 +11,7 @@ import { Logger } from "../modules/log/log";
 /**
  * Starts the app.
  */
-class Start {
+export class Start {
 
     /**
      * This class is never instantiated.
@@ -72,5 +72,3 @@ class Start {
 }
 
 Start.run();
-
-export { Start };

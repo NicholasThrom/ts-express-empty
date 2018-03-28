@@ -228,9 +228,15 @@ Default exports must not be used.
 
 Primitives and functions must not be exported directly.
 
-Each file may only have one export statement.
-This export statement must be the last statement.
-This export statement may include multiple things.
+The export keyword must precede definitions.
+for example:
+```ts
+export class Foo {}
+// instead of
+class Foo {}
+export { Foo };
+```
+The latter confuses TypeDoc.
 
 Any code run on the import of a file
 that has side effects or relies on state outside the file

@@ -8,7 +8,7 @@ import { Home } from "./home/home";
  * It only links to other routers,
  * it doesn't do anything on its own.
  */
-class Routes {
+export class Routes {
 
     /**
      * This class cannot be instantiated.
@@ -30,5 +30,3 @@ class Routes {
     }
 
 }
-
-export { Routes };

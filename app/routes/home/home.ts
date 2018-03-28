@@ -5,7 +5,7 @@ import { Router } from "express";
  *
  * The `Router` for the home page.
  */
-class Home {
+export class Home {
 
     /**
      * This class cannot be instantiated.
@@ -29,5 +29,3 @@ class Home {
     }
 
 }
-
-export { Home };

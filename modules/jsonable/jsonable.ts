@@ -33,7 +33,7 @@ type JSONArray = any[];
  *  }
  * ```
  */
-class JSONable {
+export class JSONable {
 
     /**
      * The underlying value of this JSONable.
@@ -252,5 +252,3 @@ class JSONable {
     }
 
 }
-
-export { JSONable };

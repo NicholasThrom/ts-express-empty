@@ -1,7 +1,7 @@
 /**
  * Has logging utilities.
  */
-class Logger {
+export class Logger {
 
     /**
      * This class is never instantiated.
@@ -18,5 +18,3 @@ class Logger {
     }
 
 }
-
-export { Logger };
