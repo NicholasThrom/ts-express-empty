@@ -1,26 +1,17 @@
 import * as fs from "fs";
 import * as path from "path";
 
-interface Json {
-    [key: string]: Json;
+import { JSONable } from "../../modules/jsonable/jsonable";
+
+class Uninstantiable {
+    private constructor() {}
 }
 
-/**
- * Contains data that must not be checked into version control.
- */
 export class Secrets {
 
-    /**
-     * This class is uninstantiable.
-     */
-    private constructor() {
-        throw new Error("This class cannot be instantiated");
-    }
+    private static readonly secretsFilePath = path.join(__dirname, "secrets-data.json");
 
-    /**
-     * A random string with which to sign cookies.
-     */
-    public static cookieSecret: string;
+    private static secretsCache: JSONable | undefined;
 
     /**
      * Throws an error with the specified problem
@@ -30,63 +21,39 @@ export class Secrets {
         throw new Error(`${problem} See config/secrets/README.md.`);
     }
 
-    /**
-     * Gets the json in the secrets-data.json file.
-     */
-    private static getSecrets() {
-        let secretsString: string | undefined;
-        const secretsPath = path.join(__dirname, "secrets-data.json");
-
+    private static getSecretsString() {
+        let secrets: string | undefined;
         try {
-            secretsString = fs.readFileSync(secretsPath, "utf8");
+            secrets = fs.readFileSync(Secrets.secretsFilePath, "utf8");
         } catch (e) {
             if (!(e.code === "ENOENT")) {
                 throw e;
             }
-            throw Secrets.problem(`Cannot find a ${secretsPath} file.`);
+            throw Secrets.problem(`Cannot find a ${Secrets.secretsFilePath} file.`);
         }
-
-        let secrets: any;
-
-        try {
-            secrets = JSON.parse(secretsString);
-        } catch (e) {
-            if (!(e instanceof SyntaxError)) {
-                throw e;
-            }
-            throw Secrets.problem("The secrets.json file is not valid json.");
-        }
-
-        if (typeof secrets !== "object") {
-            throw Secrets.problem(`The secrets.json file must hold an object, not ${secrets}`);
-        }
-
-        return secrets as Json;
+        return secrets;
     }
 
-    /**
-     * Pulls the cookie key out of the passed `secrets`.
-     */
-    private static extractCookieSecret(secrets: {[_: string]: any}) {
-        /** A cookie-signing string before typechecking. */
-        const cookieSecret = secrets.cookieSecret;
-
-        if (typeof cookieSecret !== "string") {
-            throw Secrets.problem(`The secrets.json's \"cookieSecret\" holds ${cookieSecret} instead of a string.`);
+    private static getSecretsJSONable() {
+        const secrets = new JSONable(Secrets.getSecretsString());
+        if (secrets.isUndefined) {
+            throw Secrets.problem(`Syntax error in ${Secrets.secretsFilePath}.`);
         }
-
-        return cookieSecret;
+        return secrets;
     }
 
-    /**
-     * Initializes this class.
-     * For unit tests only - do not call.
-     */
-    public static init() {
-        const secrets = this.getSecrets();
-        Secrets.cookieSecret = Secrets.extractCookieSecret(secrets);
+    private static getSecrets() {
+        if (!Secrets.secretsCache) {
+            Secrets.secretsCache = Secrets.getSecretsJSONable();
+        }
+        return Secrets.secretsCache;
+    }
+
+    public static getCookieSecret() {
+        const cookieSecret = Secrets.getSecrets().get("cookieSecret").string;
+        if (!cookieSecret) {
+            throw Secrets.problem(`${Secrets.secretsFilePath} is missing a "cookieSecret" string.`);
+        }
     }
 
 }
-
-Secrets.init();
