@@ -1,6 +1,14 @@
 {
     "extends": "tslint:recommended",
     "rules": {
+        "align": [
+            true,
+            "arguments",
+            "elements",
+            "members",
+            "parameters",
+            "statements"
+        ],
         "array-type": [true, "array"],
         "indent": [true, "spaces", 4],
         "interface-name": [true, "never-prefix"],
@@ -35,9 +43,9 @@
         "no-invalid-this": true,
         "no-shadowed-variable": false,
         "no-unused-variable": true,
-        "object-literal-key-quotes": [true, "as-needed"],
         "no-inferrable-types": [true, "ignore-params"],
         "no-internal-module": true,
+        "object-literal-key-quotes": [true, "as-needed"],
         "only-arrow-functions": false,
         "quotemark": [true, "double", "avoid-template"],
         "semicolon": [true, "always"],
@@ -64,14 +72,6 @@
             "check-typecast",
             "check-type-operator",
             "check-preblock"
-        ],
-        "align": [
-            true,
-            "arguments",
-            "elements",
-            "members",
-            "parameters",
-            "statements"
         ]
     },
     "linterOptions": {
