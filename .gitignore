@@ -5,7 +5,7 @@
 *.css
 
 # Secret file
-config/secrets/secrets.json
+config/config-data.json
 
 # vscode files
 .vscode

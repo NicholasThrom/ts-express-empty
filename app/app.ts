@@ -6,7 +6,7 @@ import lessMiddleware = require("less-middleware");
 import * as morgan from "morgan";
 import * as path from "path";
 
-import { Secrets } from "../config/secrets/secrets";
+import { Config } from "../config/config";
 import { HTTPError } from "../modules/types/types";
 import { Routes } from "./routes/routes";
 
@@ -36,7 +36,7 @@ export class App {
         app.use(morgan("dev"));
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
-        app.use(cookieParser(Secrets.cookieSecret));
+        app.use(cookieParser(Config.getCookieSecret()));
         app.use("/public", lessMiddleware(path.join(__dirname, "public")));
         app.use("/public", express.static(path.join(__dirname, "public")));
     }
