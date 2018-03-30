@@ -4,20 +4,25 @@ import { match, sandbox as sandboxFactory, SinonSpy, SinonStub } from "sinon";
 const sandbox = sandboxFactory.create();
 
 import * as http from "http";
-
 import { Logger } from "../../modules/log/log";
+import { stubConfig } from "../testing-utils/stub-config";
 
 // Make sure nothing happens on import.
 sandbox.stub(http, "createServer").returns({
     on() {},
     listen() {},
 });
+stubConfig.stubConfig(sandbox);
 
 import { Start } from "../../scripts/start";
 
 sandbox.restore();
 
 describe("scripts/start", function () {
+
+    beforeEach(function () {
+        stubConfig.stubConfig(sandbox);
+    });
 
     afterEach(function () {
         sandbox.restore();
