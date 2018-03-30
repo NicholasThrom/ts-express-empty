@@ -3,58 +3,56 @@ import * as path from "path";
 
 import { JSONable } from "../modules/jsonable/jsonable";
 
-class Uninstantiable {
-    private constructor() {}
-}
+class Config {
 
-export class Config {
+    private readonly filePath = path.join(__dirname, "config-data.json");
 
-    private static readonly filePath = path.join(__dirname, "config-data.json");
-
-    private static cache: JSONable | undefined;
+    private cache: JSONable | undefined;
 
     /**
      * Throws an error with the specified problem
      * and advises the user to look at readme.
      */
-    private static problem(problem: string): never {
+    private problem(problem: string): never {
         throw new Error(`${problem} See /config/README.md.`);
     }
 
-    private static getString() {
+    private getString() {
         let config: string | undefined;
         try {
-            config = fs.readFileSync(Config.filePath, "utf8");
+            config = fs.readFileSync(this.filePath, "utf8");
         } catch (e) {
             if (!(e.code === "ENOENT")) {
                 throw e;
             }
-            throw Config.problem(`Cannot find a ${Config.filePath} file.`);
+            throw this.problem(`Cannot find a ${this.filePath} file.`);
         }
         return config;
     }
 
-    private static getJSONable() {
-        const config = JSONable.parse(Config.getString());
+    private getJSONable() {
+        const config = JSONable.parse(this.getString());
         if (config.isUndefined) {
-            throw Config.problem(`Syntax error in ${Config.filePath}.`);
+            throw this.problem(`Syntax error in ${this.filePath}.`);
         }
         return config;
     }
 
-    private static getConfig() {
-        if (!Config.cache) {
-            Config.cache = Config.getJSONable();
+    private  getConfig() {
+        if (!this.cache) {
+            this.cache = this.getJSONable();
         }
-        return Config.cache;
+        return this.cache;
     }
 
-    public static getCookieSecret() {
-        const cookieSecret = Config.getConfig().get("cookieSecret").string;
+    public getCookieSecret() {
+        const cookieSecret = this.getConfig().get("cookieSecret").string;
         if (!cookieSecret) {
-            throw Config.problem(`${Config.filePath} is missing a "cookieSecret" string.`);
+            throw this.problem(`${this.filePath} is missing a "cookieSecret" string.`);
         }
         return cookieSecret;
     }
 
 }
+
+export const config = new Config();
