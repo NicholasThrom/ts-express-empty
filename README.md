@@ -1,30 +1,36 @@
 # ts-express-empty
 Just an empty typescript/express app to save some time setting up.
 
-This repo is for you if you happen to like the exact same dependencies as I, and you don't want to spend a bunch of time setting it up.
+This repository is primarily for me.
 
-Anyone may use this repository as a starting point without giving credit. You may not hold me legally responsible for any problems, but you may insult me for them.
+However, this repository may also be for you
+if you happen to like the exact same dependencies as I,
+and you don't want to spend a bunch of time setting it up.
+
+Anyone may use this repository as a starting point without giving credit.
+You may not hold me legally responsible for any problems,
+but you may insult me for them.
 
 ## Contents
 - [Notable Dependencies](#notable-dependencies)
 - [Scripts](#scripts)
-  - [`start`](#npm-start)
-  - [`compile`](#npm-run-compile)
-  - [`compiling`](#npm-run-compiling)
-  - [`test`](#npm-test)
-  - [`testing`](#npm-run-testing)
-  - [`lint`](#npm-run-lint)
-  - [`linting`](#npm-run-linting)
-  - [`concatenate`](#npm-run-concatenate)
-  - [`concatenating`](#npm-run-concatenating)
+    - [`start`](#npm-start)
+    - [`compile`](#npm-run-compile)
+    - [`compiling`](#npm-run-compiling)
+    - [`test`](#npm-test)
+    - [`testing`](#npm-run-testing)
+    - [`lint`](#npm-run-lint)
+    - [`linting`](#npm-run-linting)
+    - [`concatenate`](#npm-run-concatenate)
+    - [`concatenating`](#npm-run-concatenating)
 - [File Structure](#file-structure)
-  - [`app/`](#app)
-    - [`app/views/`](#app-views)
-    - [`app/routes/`](#app-routes)
-    - [`app/public/`](#app-public)
-  - [`modules/`](#modules)
-  - [`test/`](#test)
-  - [`scripts/`](#scripts-1)
+    - [`app/`](#app)
+        - [`app/views/`](#app-views)
+        - [`app/routes/`](#app-routes)
+        - [`app/public/`](#app-public)
+    - [`modules/`](#modules)
+    - [`test/`](#test)
+    - [`scripts/`](#scripts-1)
 
 ## Notable Dependencies
 - Language – [TypeScript](https://www.typescriptlang.org/)
@@ -40,39 +46,36 @@ For a full list of dependencies just read `package.json`.
 
 #### `npm start`
 
-Runs the server on the set port, or by default port 3000. Does not automatically rerun on changes.
-
-#### `npm run compile`
-
-Compiles the .ts files into .js files. Also runs [`concatenate`](#npm-run-concatenate).
-
-#### `npm run compiling`
-
-Reruns [`compile`](#npm-run-compile) on file changes.
+Runs the server on the set port, or by default port 3000.
+Does not automatically rerun on changes.
 
 #### `npm test`
 
-Runs the [Mocha](https://mochajs.org/) tests.
-
-#### `npm run testing`
-
-Reruns [`test`](#npm-run-test) on file changes.
+Runs [lint](#npm-run-lint),
+[typecheck](#npm-run-typecheck),
+and [mocha](#npm-run-mocha).
 
 #### `npm run lint`
 
-Runs tslint and pug-lint.
+Runs `tslint` and `pug-lint`.
 
-#### `npm run linting`
+#### `npm run typecheck`
 
-Reruns [`lint`](#npm-run-lint) on file changes. Seems to run too often – use with caution.
+Runs `tsc` with `--no-emit` to ensure files are well typed.
 
-#### `npm run concatenate`
+#### `npm run mocha`
 
-Concatenates every file that ends with `.js` in `app/public/subscripts` and subdirectories into `app/public/subscripts/script.js`. This allows pages to get the javascript with only one network request.
+Runs the [mocha](https://mochajs.org/) tests.
 
-#### `npm run concatenating`
+#### `npm run coverage`
 
-Reruns [`concatenate`](#npm-run-concatenate) on file changes.
+Generates a coverage from istanbul and [mocha](#npm-run-mocha).
+
+#### `npm run compile`
+
+Compiles the served `.ts` files into `.js` files.
+
+**Not currently supported.**
 
 ## File Structure
 
@@ -86,7 +89,8 @@ Reruns [`concatenate`](#npm-run-concatenate) on file changes.
 
 #### `app/routes/`
 
-`app/routes/` holds the `express.Router`s. The directory structure reflects that paths on the website.
+`app/routes/` holds the `express.Router`s.
+The directory structure reflects that paths on the website.
 
 #### `app/public/`
 
@@ -96,16 +100,20 @@ It contains:
 - `app/public/icons` for favicons.
 - `app/public/styles` for `.less` files. Everything in this directory is `@import`ed into `style.less` so that only one network request must be made.
 - `app/public/scripts` for generated `.js` files. Nothing is manually put here.
-- `app/public/subscripts` for `.ts` files that will available on the client. Anything in here will be compiled and concatenated into `app/public/scripts/script.js`.
+- `app/public/precompiled` for `.ts` files that will available on the client.
+    Anything in here will be compiled and concatenated
+    into `app/public/scripts/script.js`.
 
 ### `modules/`
 
-`modules/` holds generic utility type files that could theoretically standalone on npm.
+`modules/` holds generic utility type files
+that could theoretically standalone on npm.
 
 ### `test/`
 
-`test/` holds the [Mocha](https://mochajs.org/) tests. Everything in this directory will be run by [`npm test`](#npm-test).
+`test/` holds the [Mocha](https://mochajs.org/) tests.
+These is run by [`npm test`](#npm-test).
 
 ### `scripts/`
 
-`scripts/` holds anything used by scripts.
+`scripts/` holds any files that can actually be run by `ts-node`.
