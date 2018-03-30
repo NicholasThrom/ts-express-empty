@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "start": "ts-node ./scripts/start",
-        "test": "mocha",
+        "test": "tsc && npm run lint -s && mocha",
         "testing": "watch 'npm run test -s' -d ./",
         "compile": "tsc && npm run concatenate -s",
         "compiling": "npm run concatenating -s & tsc -w",
