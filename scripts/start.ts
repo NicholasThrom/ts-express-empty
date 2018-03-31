@@ -9,22 +9,18 @@ import { app } from "../app/app";
 import { log } from "../modules/log/log";
 
 /**
+ * **singleton**
+ *
  * Starts the app.
  */
-export class Start {
+export const start = new (class Start {
 
     /**
-     * This class is never instantiated.
+     * Converts the port string to a number,
+     * if it is a strictly positive integer,
+     * otherwise returns it as a string.
      */
-    private constructor() {
-        throw new Error("This class cannot be instantiated");
-    }
-
-    /**
-     * Converts the port string to a number, if it is a strictly positive
-     * integer, otherwise returns it as a string.
-     */
-    private static normalizePort(port: string) {
+    private normalizePort(port: string) {
         const portNumber = parseInt(port, 10);
         if (isNaN(portNumber) || portNumber < 0) {
             return port;
@@ -36,9 +32,9 @@ export class Start {
     /**
      * Runs the server.
      */
-    public static run() {
+    public run() {
 
-        const port = Start.normalizePort(process.env.PORT || "3000");
+        const port = this.normalizePort(process.env.PORT || "3000");
 
         const portName = typeof port === "string"
             ? `pipe ${port}`
@@ -69,6 +65,6 @@ export class Start {
 
     }
 
-}
+})();
 
-Start.run();
+start.run();

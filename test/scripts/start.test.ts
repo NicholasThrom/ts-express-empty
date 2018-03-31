@@ -14,7 +14,7 @@ sandbox.stub(http, "createServer").returns({
 });
 stubConfig.stubConfig(sandbox);
 
-import { Start } from "../../scripts/start";
+import { start } from "../../scripts/start";
 
 sandbox.restore();
 
@@ -29,7 +29,7 @@ describe("scripts/start", function () {
     });
 
     it("should exist", function () {
-        assert.exists(Start);
+        assert.exists(start);
     });
 
     describe(".run()", function () {
@@ -61,19 +61,19 @@ describe("scripts/start", function () {
         });
 
         it("should call createServer once", function () {
-            Start.run();
+            start.run();
 
             assert.strictEqual(createServerStub.callCount, 1);
         });
 
         it("should call listen once", function () {
-            Start.run();
+            start.run();
 
             assert.strictEqual(listenSpy.callCount, 1);
         });
 
         it("should call listen with the default port 3000", function () {
-            Start.run();
+            start.run();
 
             assert.strictEqual(listenSpy.firstCall.args[0], 3000);
         });
@@ -81,7 +81,7 @@ describe("scripts/start", function () {
         it("should call listen with a custom port", function () {
             process.env.PORT = "4000";
 
-            Start.run();
+            start.run();
 
             assert.strictEqual(listenSpy.firstCall.args[0], 4000);
         });
@@ -89,7 +89,7 @@ describe("scripts/start", function () {
         it("should call listen with a custom non-numeric port", function () {
             process.env.PORT =  "some string";
 
-            Start.run();
+            start.run();
 
             assert.strictEqual(listenSpy.firstCall.args[0], "some string");
         });
@@ -97,7 +97,7 @@ describe("scripts/start", function () {
         describe("on(\"listen\")", function () {
 
             it("should call on(\"listen\") once", function () {
-                Start.run();
+                start.run();
 
                 assert(onSpy.withArgs("listening", match.func).calledOnce);
             });
@@ -105,7 +105,7 @@ describe("scripts/start", function () {
             it("should call logging function in passed function", function () {
                 const logStub = sandbox.stub(log, "log");
 
-                Start.run();
+                start.run();
 
                 const onFunction = onSpy.withArgs("listening", match.func).firstCall.args[1];
                 onFunction();
@@ -116,7 +116,7 @@ describe("scripts/start", function () {
                 const logStub = sandbox.stub(log, "log");
                 process.env.PORT = "4000";
 
-                Start.run();
+                start.run();
 
                 const onFunction = onSpy.withArgs("listening", match.func).firstCall.args[1];
                 onFunction();
@@ -128,7 +128,7 @@ describe("scripts/start", function () {
                 const logStub = sandbox.stub(log, "log");
                 process.env.PORT = "some port";
 
-                Start.run();
+                start.run();
 
                 const onFunction = onSpy.withArgs("listening", match.func).firstCall.args[1];
                 onFunction();
@@ -141,7 +141,7 @@ describe("scripts/start", function () {
         describe("on(\"error\")", function () {
 
             it("should call on(\"error\") once", function () {
-                Start.run();
+                start.run();
 
                 assert(onSpy.withArgs("error", match.func).calledOnce);
             });
@@ -150,7 +150,7 @@ describe("scripts/start", function () {
                 const errorMessage = "error message";
                 const error = new Error(errorMessage);
 
-                Start.run();
+                start.run();
 
                 const errorFunction = onSpy.withArgs("error", match.func).firstCall.args[1];
 
@@ -163,7 +163,7 @@ describe("scripts/start", function () {
                 (error as any).syscall = "listen";
                 (error as any).code = "EACCES";
 
-                Start.run();
+                start.run();
 
                 const errorFunction = onSpy.withArgs("error", match.func).firstCall.args[1];
                 assert.throws(() => { errorFunction(error); }, /permission/);
@@ -175,7 +175,7 @@ describe("scripts/start", function () {
                 (error as any).syscall = "listen";
                 (error as any).code = "EADDRINUSE";
 
-                Start.run();
+                start.run();
 
                 const errorFunction = onSpy.withArgs("error", match.func).firstCall.args[1];
                 assert.throws(() => { errorFunction(error); }, /(using)|(use)/);
@@ -187,7 +187,7 @@ describe("scripts/start", function () {
                 (error as any).syscall = "listen";
                 (error as any).code = "unknown error";
 
-                Start.run();
+                start.run();
 
                 const errorFunction = onSpy.withArgs("error", match.func).firstCall.args[1];
                 assert.throws(() => { errorFunction(error); }, errorMessage);
@@ -200,47 +200,39 @@ describe("scripts/start", function () {
     describe(".normalizePort()", function () {
 
         it("should return a number if the string is a positive number", function () {
-            const port = Start["normalizePort"]("42");
+            const port = start["normalizePort"]("42");
 
             assert.strictEqual(port, 42);
         });
 
         it("should return a number if the string is 0", function () {
-            const port = Start["normalizePort"]("0");
+            const port = start["normalizePort"]("0");
 
             assert.strictEqual(port, 0);
         });
 
         it("should return a string is a non-number", function () {
-            const port = Start["normalizePort"]("string");
+            const port = start["normalizePort"]("string");
 
             assert.strictEqual(port, "string");
         });
 
         it("should return a string is NaN", function () {
-            const port = Start["normalizePort"]("NaN");
+            const port = start["normalizePort"]("NaN");
 
             assert.strictEqual(port, "NaN");
         });
 
         it("should return a string is \"NaN\"", function () {
-            const port = Start["normalizePort"]("NaN");
+            const port = start["normalizePort"]("NaN");
 
             assert.strictEqual(port, "NaN");
         });
 
         it("should return a string is a negative number", function () {
-            const port = Start["normalizePort"]("-42");
+            const port = start["normalizePort"]("-42");
 
             assert.strictEqual(port, "-42");
-        });
-
-    });
-
-    describe(".constructor()", function () {
-
-        it("should not be instantiable", function () {
-            assert.throws(() => { Reflect.construct(Start, []); });
         });
 
     });
