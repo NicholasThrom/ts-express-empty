@@ -2,20 +2,13 @@ import { Router } from "express";
 import { Home } from "./home/home";
 
 /**
- * **uninstantiable**
+ * **singleton**
  *
  * The top of all the routes.
  * It only links to other routers,
  * it doesn't do anything on its own.
  */
-export class Routes {
-
-    /**
-     * This class cannot be instantiated.
-     */
-    private constructor() {
-        throw new Error("This class cannot be instantiated.");
-    }
+export const routes = new (class Routes {
 
     /**
      * **deterministic**,
@@ -23,10 +16,10 @@ export class Routes {
      *
      * Gets the top level `Router`.
      */
-    public static getRouter() {
+    public getRouter() {
         const router = Router();
         router.use("/", Home.getRouter());
         return router;
     }
 
-}
+})();

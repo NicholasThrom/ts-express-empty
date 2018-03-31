@@ -8,7 +8,7 @@ import * as path from "path";
 
 import { config } from "../config/config";
 import { HTTPError } from "../modules/types/types";
-import { Routes } from "./routes/routes";
+import { routes } from "./routes/routes";
 
 /**
  * **singleton**
@@ -79,7 +79,7 @@ export const app = new (class App {
 
         this.setUpMiddleware(app);
 
-        app.use("/", Routes.getRouter());
+        app.use("/", routes.getRouter());
         app.use(this.pageNotFoundHandler);
         app.use(this.errorHandler);
 
