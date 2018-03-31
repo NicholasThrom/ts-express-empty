@@ -1,18 +1,11 @@
 import { Router } from "express";
 
 /**
- * **uninstantiable**
+ * **singleton**
  *
  * The `Router` for the home page.
  */
-export class Home {
-
-    /**
-     * This class cannot be instantiated.
-     */
-    private constructor() {
-        throw new Error("This class cannot be instantiated.");
-    }
+export const home = new (class Home {
 
     /**
      * **deterministic**,
@@ -20,7 +13,7 @@ export class Home {
      *
      * Gets the `Home` `Router`.
      */
-    public static getRouter() {
+    public getRouter() {
         const router = Router();
         router.use("/", (req, res) => {
             res.render("super");
@@ -28,4 +21,4 @@ export class Home {
         return router;
     }
 
-}
+})();

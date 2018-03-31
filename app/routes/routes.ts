@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Home } from "./home/home";
+import { home } from "./home/home";
 
 /**
  * **singleton**
@@ -18,7 +18,7 @@ export const routes = new (class Routes {
      */
     public getRouter() {
         const router = Router();
-        router.use("/", Home.getRouter());
+        router.use("/", home.getRouter());
         return router;
     }
 
