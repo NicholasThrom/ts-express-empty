@@ -32,8 +32,7 @@ export const app = new (class App {
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true }));
         app.use(cookieParser(config.getCookieSecret()));
-        app.use("/public", lessMiddleware(path.join(__dirname, "public")));
-        app.use("/public", express.static(path.join(__dirname, "public")));
+        app.use("/public", express.static(path.join(__dirname, "../public")));
     }
 
     /**
