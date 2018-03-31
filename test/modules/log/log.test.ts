@@ -3,7 +3,7 @@ import "mocha";
 import { sandbox as sandboxFactory } from "sinon";
 const sandbox = sandboxFactory.create();
 
-import { Logger } from "../../../modules/log/log";
+import { log } from "../../../modules/log/log";
 
 describe("module/log/log", function () {
 
@@ -12,7 +12,7 @@ describe("module/log/log", function () {
     });
 
     it("should exist", function () {
-        assert.exists(Logger);
+        assert.exists(log);
     });
 
     describe(".log()", function () {
@@ -24,7 +24,7 @@ describe("module/log/log", function () {
         });
 
         it("should call console.log", function () {
-            Logger.log();
+            log.log();
 
             assert.strictEqual(logStub.callCount, 1);
 
@@ -34,7 +34,7 @@ describe("module/log/log", function () {
 
         it("should call console.log with a single string argument", function () {
             const args = ["any string"];
-            Logger.log(...args);
+            log.log(...args);
 
             assert.deepEqual(logStub.firstCall.args, args);
 
@@ -43,7 +43,7 @@ describe("module/log/log", function () {
 
         it("should call console.log with multiple string arguments", function () {
             const args = ["string", "another string"];
-            Logger.log(...args);
+            log.log(...args);
 
             assert.deepEqual(logStub.firstCall.args, args);
 
@@ -52,19 +52,11 @@ describe("module/log/log", function () {
 
         it("should call console.log with complex arguments", function () {
             const args = [{ id: 7 }, [[[3], 3]]];
-            Logger.log(...args);
+            log.log(...args);
 
             assert.deepEqual(logStub.firstCall.args, args);
 
             sandbox.restore();
-        });
-
-    });
-
-    describe(".constructor()", function () {
-
-        it("should not be instantiable", function () {
-            assert.throws(() => { Reflect.construct(Logger, []); });
         });
 
     });

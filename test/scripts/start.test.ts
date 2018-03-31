@@ -4,7 +4,7 @@ import { match, sandbox as sandboxFactory, SinonSpy, SinonStub } from "sinon";
 const sandbox = sandboxFactory.create();
 
 import * as http from "http";
-import { Logger } from "../../modules/log/log";
+import { log } from "../../modules/log/log";
 import { stubConfig } from "../testing-utils/stub-config";
 
 // Make sure nothing happens on import.
@@ -103,7 +103,7 @@ describe("scripts/start", function () {
             });
 
             it("should call logging function in passed function", function () {
-                const logStub = sandbox.stub(Logger, "log");
+                const logStub = sandbox.stub(log, "log");
 
                 Start.run();
 
@@ -113,7 +113,7 @@ describe("scripts/start", function () {
             });
 
             it("should log numeric port in passed function", function () {
-                const logStub = sandbox.stub(Logger, "log");
+                const logStub = sandbox.stub(log, "log");
                 process.env.PORT = "4000";
 
                 Start.run();
@@ -125,7 +125,7 @@ describe("scripts/start", function () {
             });
 
             it("should log string port in passed function", function () {
-                const logStub = sandbox.stub(Logger, "log");
+                const logStub = sandbox.stub(log, "log");
                 process.env.PORT = "some port";
 
                 Start.run();

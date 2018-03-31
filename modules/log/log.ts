@@ -1,20 +1,15 @@
 /**
+ * **singleton**
+ *
  * Has logging utilities.
  */
-export class Logger {
-
-    /**
-     * This class is never instantiated.
-     */
-    private constructor() {
-        throw new Error("This class cannot be instantiated.");
-    }
+export const log = new (class Log {
 
     /**
      * Logs the specified messages.
      */
-    public static log(...messages: any[]) {
+    public log(...messages: any[]) {
         console.log(...messages);
     }
 
-}
+})();
