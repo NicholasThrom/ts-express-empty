@@ -11,25 +11,20 @@ import { HTTPError } from "../modules/types/types";
 import { Routes } from "./routes/routes";
 
 /**
- * **uninstantiable**
+ * **singleton**
  *
- * The whole app.
+ * Gets and sets up the express app.
+ *
+ * The relevant method is `getApp`.
  */
-export class App {
-
-    /**
-     * This class cannot be instantiated.
-     */
-    private constructor() {
-        throw new Error("This class cannot be instantiated.");
-    }
+export const app = new (class App {
 
     /**
      * **mutates arguments**
      *
      * Sets up the middleware on the specified express app.
      */
-    private static setUpMiddleware(app: express.Application) {
+    private setUpMiddleware(app: express.Application) {
         app.set("views", path.join(__dirname, "views"));
         app.set("view engine", "pug");
 
@@ -45,7 +40,7 @@ export class App {
      * The last `Handler`, to catch any requests that none of the other
      * `Handler`s caught.
      */
-    private static readonly pageNotFoundHandler: express.Handler = () => {
+    private readonly pageNotFoundHandler: express.Handler = () => {
         const error = new HTTPError("Page not found");
         error.status = 404;
         throw error;
@@ -56,7 +51,7 @@ export class App {
      *
      * If an error occurs, this function responds appropriately.
      */
-    private static readonly errorHandler: express.ErrorRequestHandler = (
+    private readonly errorHandler: express.ErrorRequestHandler = (
         err: any,
         req: express.Request,
         res: express.Response,
@@ -79,16 +74,16 @@ export class App {
      *
      * Does not do anything with the app.
      */
-    public static getApp() {
+    public getApp() {
         const app = express();
 
-        App.setUpMiddleware(app);
+        this.setUpMiddleware(app);
 
         app.use("/", Routes.getRouter());
-        app.use(App.pageNotFoundHandler);
-        app.use(App.errorHandler);
+        app.use(this.pageNotFoundHandler);
+        app.use(this.errorHandler);
 
         return app;
     }
 
-}
+})();

@@ -5,7 +5,7 @@
 
 import * as http from "http";
 
-import { App } from "../app/app";
+import { app } from "../app/app";
 import { Logger } from "../modules/log/log";
 
 /**
@@ -44,7 +44,7 @@ export class Start {
             ? `pipe ${port}`
             : `port ${port}`;
 
-        const server = http.createServer(App.getApp());
+        const server = http.createServer(app.getApp());
 
         server.on("error", (error) => {
             if ((error as any).syscall !== "listen") {
