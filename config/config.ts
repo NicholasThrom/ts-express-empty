@@ -3,7 +3,7 @@ import * as path from "path";
 
 import { JSONable } from "../modules/jsonable/jsonable";
 
-class Config {
+export const config = new (class Config {
 
     private readonly filePath = path.join(__dirname, "config-data.json");
 
@@ -53,6 +53,4 @@ class Config {
         return cookieSecret;
     }
 
-}
-
-export const config = new Config();
+})();
