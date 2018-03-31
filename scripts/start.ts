@@ -6,7 +6,7 @@
 import * as http from "http";
 
 import { app } from "../app/app";
-import { log } from "../modules/log/log";
+import { log } from "../app/modules/log/log";
 
 /**
  * **singleton**

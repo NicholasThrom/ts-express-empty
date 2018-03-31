@@ -79,7 +79,7 @@ Compiles the served `.ts` files into `.js` files.
 
 ### `app/`
 
-`app/` holds things unique to this project and intended for production.
+`app/` holds this app.
 
 #### `app/views/`
 
@@ -102,7 +102,7 @@ It contains:
     Anything in here will be compiled and concatenated
     into `app/public/scripts/script.js`.
 
-### `modules/`
+### `app/modules/`
 
 `modules/` holds generic utility type files
 that could theoretically standalone on npm.

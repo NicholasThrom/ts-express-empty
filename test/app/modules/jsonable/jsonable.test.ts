@@ -3,7 +3,7 @@ import "mocha";
 import { sandbox as sandboxFactory } from "sinon";
 const sandbox = sandboxFactory.create();
 
-import { JSONable } from "../../../modules/jsonable/jsonable";
+import { JSONable } from "../../../../app/modules/jsonable/jsonable";
 
 describe("modules/jsonable/jsonable", function () {
 

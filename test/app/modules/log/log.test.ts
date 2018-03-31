@@ -3,7 +3,7 @@ import "mocha";
 import { sandbox as sandboxFactory } from "sinon";
 const sandbox = sandboxFactory.create();
 
-import { log } from "../../../modules/log/log";
+import { log } from "../../../../app/modules/log/log";
 
 describe("module/log/log", function () {
 

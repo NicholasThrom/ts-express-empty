@@ -3,7 +3,7 @@ import "mocha";
 import { sandbox as sandboxFactory } from "sinon";
 const sandbox = sandboxFactory.create();
 
-import { HTTPError } from "../../../modules/types/types";
+import { HTTPError } from "../../../../app/modules/types/types";
 
 describe("modules/types/types", function () {
 

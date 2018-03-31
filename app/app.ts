@@ -6,8 +6,8 @@ import lessMiddleware = require("less-middleware");
 import * as morgan from "morgan";
 import * as path from "path";
 
-import { config } from "../config/config";
-import { HTTPError } from "../modules/types/types";
+import { config } from "./config/config";
+import { HTTPError } from "./modules/types/types";
 import { routes } from "./routes/routes";
 
 /**

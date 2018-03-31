@@ -4,7 +4,7 @@ import { match, sandbox as sandboxFactory, SinonSpy, SinonStub } from "sinon";
 const sandbox = sandboxFactory.create();
 
 import * as http from "http";
-import { log } from "../../modules/log/log";
+import { log } from "../../app/modules/log/log";
 import { stubConfig } from "../testing-utils/stub-config";
 
 // Make sure nothing happens on import.

@@ -4,10 +4,10 @@ import { sandbox as sandboxFactory, SinonStub } from "sinon";
 const sandbox = sandboxFactory.create();
 
 import * as fs from "fs";
-import { JSONable } from "../../modules/jsonable/jsonable";
-import { CustomAssert } from "../testing-utils/custom-assert";
+import { JSONable } from "../../../app/modules/jsonable/jsonable";
+import { CustomAssert } from "../../testing-utils/custom-assert";
 
-import { config } from "../../config/config";
+import { config } from "../../../app/config/config";
 
 describe("config/config", function () {
 

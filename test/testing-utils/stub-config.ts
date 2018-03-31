@@ -1,5 +1,5 @@
 import { SinonSandbox } from "sinon";
-import { config } from "../../config/config";
+import { config } from "../../app/config/config";
 
 /**
  * Since the `config` file is designed to fail on initial clone,
