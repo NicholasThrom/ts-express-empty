@@ -23,6 +23,7 @@ This file will have the following format:
 ```
 
 Obviously do not use the placeholder `"random string of characters"`.
+
 If you need to generate a random string of characters,
 running the following in a console somewhere.
 
