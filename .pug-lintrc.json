@@ -27,10 +27,6 @@
         "requireSpaceAfterCodeOperator": true,
         "requireStrictEqualityOperators": true,
         "validateAttributeQuoteMarks": "\"",
-        "validateDivTags": true,
-        "validateExtensions": true,
-        "validateIndentation": 4,
-        "validateSelfClosingTags": true,
         "validateAttributeSeparator": {
             "separator": " ",
             "multiLineSeparator": "\n "
