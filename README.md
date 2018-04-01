@@ -7,7 +7,14 @@ However, this repository may also be for you
 if you happen to like the exact same dependencies as I,
 and you don't want to spend a bunch of time setting it up.
 
-Anyone may use this repository as a starting point without giving credit.
+If you do decide to use this repository,
+there are a couple of opinionated files you will wish to change.
+`package.json` contains the name, description, and version of this repository.
+`LICENSE` contains this repository's license.
+`style-guide.md`, `tslint.json`, `ts-config.json`, and `pug-lintrc.json`,
+contain very opinionated instructions on how to write your code.
+
+You may use this repository as a starting point without giving credit.
 You may not hold me legally responsible for any problems,
 but you may insult me for them.
 
