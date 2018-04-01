@@ -1,8 +1,8 @@
-# Generated .js files.
-*.js
+# Generated .js file.
+public/scripts/*.js
 
-# Generated .css files
-*.css
+# Generated .css file
+public/styles/*.css
 
 # Secret file
 config/config-data.json
