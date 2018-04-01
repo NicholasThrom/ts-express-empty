@@ -1,14 +1,10 @@
-//
-// Tests test/test.ts
-//
-
-import * as chai from "chai";
+import { assert } from "chai";
 import "mocha";
 
-describe("test/test.ts", function () {
+describe("test/test", function () {
 
     it("should work", function () {
-        chai.assert(true);
+        assert(true);
     });
 
 });
