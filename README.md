@@ -78,9 +78,22 @@ Generates a coverage from istanbul and [mocha](#npm-run-mocha).
 
 #### `npm run compile`
 
-Compiles the served `.ts` files into `.js` files.
+Compiles the files in `app/client`, putting them in `public`.
+See [`npm run compile-js`](#npm-run-compile-js)
+and [`npm run compile-css`](#npm-run-compile-css)
+for details.
 
-**Not currently supported.**
+#### `npm run compile-js`
+
+Compiles everything in `app/client/scripts/index.ts`,
+as well as any files it imports,
+and places it in `public/scripts/script.js`.
+
+#### `npm run compile-css`
+
+Compiles everything in `app/client/styles/index.ts`,
+as well as any files it imports,
+and places it in `public/styles/style.js`.
 
 ## File Structure
 

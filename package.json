@@ -12,7 +12,7 @@
         "coverage": "nyc npm run mocha -s",
         "compile": "npm run compile-js -s && npm run compile-css -s",
         "compile-js": "webpack",
-        "compile-css": "lessc ./app/client/styles/style.less ./public/styles/style.css -su=on --clean-css"
+        "compile-css": "lessc ./app/client/styles/index.less ./public/styles/style.css -su=on --clean-css"
     },
     "repository": {
         "type": "git",
