@@ -29,13 +29,6 @@ but you may insult me for them.
     - [`coverage`](#npm-run-coverage)
     - [`compile`](#npm-run-compile)
 - [File Structure](#file-structure)
-    - [`app/`](#app)
-        - [`app/views/`](#app-views)
-        - [`app/routes/`](#app-routes)
-        - [`app/public/`](#app-public)
-    - [`modules/`](#modules)
-    - [`test/`](#test)
-    - [`scripts/`](#scripts-1)
 
 ## Notable Dependencies
 - Language – [TypeScript](https://www.typescriptlang.org/)
@@ -97,41 +90,14 @@ and places it in `public/styles/style.js`.
 
 ## File Structure
 
-### `app/`
+Most folders contain a `README` explaining their purpose
+in more detail.
 
-`app/` holds this app.
+`app/` contains everything about the function of this app.
 
-#### `app/views/`
+`test/` contains tests for this app, as well as testing utilities.
 
-`app/views/` holds the `.pug` files.
+`public/` contains files that are accessible from `[url]/public`.
+There is no `README` there since it would be publicly accessible.
 
-#### `app/routes/`
-
-`app/routes/` holds the `express.Router`s.
-The directory structure reflects that paths on the website.
-
-#### `app/public/`
-
-Anything in `app/public/` can be loaded from `[url]/public/`.
-
-It contains:
-- `app/public/icons` for favicons.
-- `app/public/styles` for `.less` files. Everything in this directory is `@import`ed into `style.less` so that only one network request must be made.
-- `app/public/scripts` for generated `.js` files. Nothing is manually put here.
-- `app/public/precompiled` for `.ts` files that will available on the client.
-    Anything in here will be compiled and concatenated
-    into `app/public/scripts/script.js`.
-
-### `app/modules/`
-
-`modules/` holds generic utility type files
-that could theoretically standalone on npm.
-
-### `test/`
-
-`test/` holds the [Mocha](https://mochajs.org/) tests.
-These is run by [`npm test`](#npm-test).
-
-### `scripts/`
-
-`scripts/` holds any files that can actually be run by `ts-node`.
+`scripts/` contains files for `ts-node` to run.
