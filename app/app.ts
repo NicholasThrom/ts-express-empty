@@ -2,7 +2,6 @@
 import * as bodyParser from "body-parser";
 import * as cookieParser from "cookie-parser";
 import * as express from "express";
-import lessMiddleware = require("less-middleware");
 import * as morgan from "morgan";
 import * as path from "path";
 
