@@ -9,7 +9,7 @@ When you clone this repository,
 you'll notice that `npm run` throws an error telling you to look here.
 
 To fix these errors,
-you must create a `config-data.json` file in this folder
+you must create a `config-data.json` file in this directory
 (i.e. `/config/config-data.json`).
 It is not called `config.json` as typescript gets confused
 when two files differ only by extension.

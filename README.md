@@ -99,7 +99,7 @@ and places it in `public/styles/style.js`.
 
 ## File Structure
 
-Most folders contain a `README` explaining their purpose
+Most directories contain a `README` explaining their purpose
 in more detail.
 
 `app/` contains everything about the function of this app.
