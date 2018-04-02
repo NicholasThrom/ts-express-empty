@@ -34,11 +34,20 @@ but you may insult me for them.
 - Language – [TypeScript](https://www.typescriptlang.org/)
 - Framework – [Express](https://expressjs.com/)
 - Template engine – [Pug](https://pugjs.org/)
-- CSS preprocessor – [Less](http://lesscss.org/)
-- Testing framework – [Mocha](https://mochajs.org/), [Sinon](http://sinonjs.org/), [Chai](http://chaijs.com/), and [Istanbul](https://istanbul.js.org/).
-- Linters – [tslint](https://palantir.github.io/tslint/) and [pug-lint](https://github.com/pugjs/pug-lint)
+- JS minification — [webpack](https://webpack.js.org/)
+- CSS preprocessor –
+    [Less](http://lesscss.org/)
+    and [clean-css](https://github.com/jakubpawlowicz/clean-css)
+- Testing framework –
+    [Mocha](https://mochajs.org/),
+    [Sinon](http://sinonjs.org/),
+    [Chai](http://chaijs.com/),
+    and [Istanbul](https://istanbul.js.org/)
+- Linters –
+    [tslint](https://palantir.github.io/tslint/)
+    and [pug-lint](https://github.com/pugjs/pug-lint)
 
-For a full list of dependencies just read `package.json`.
+For a full list of dependencies see `package.json`.
 
 ## Scripts
 
