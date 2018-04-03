@@ -1,4 +1,4 @@
-# Config
+# `app/config/`
 
 The `config-data.json` file cannot
 be checked into version control.
