@@ -11,7 +11,7 @@ If you do decide to use this repository,
 there are a couple of opinionated files you will wish to change.
 `package.json` contains the name, description, and version of this repository.
 `LICENSE` contains this repository's license.
-`style-guide.md`, `tslint.json`, `ts-config.json`, and `pug-lintrc.json`,
+`style-guide.md`, `tslint.json`, `ts-config.json`, and `pug-lintrc.json`
 contain very opinionated instructions on how to write your code.
 
 You may use this repository as a starting point without giving credit.
