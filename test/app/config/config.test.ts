@@ -11,7 +11,16 @@ import { config } from "../../../app/config/config";
 
 describe("config/config", function () {
 
+    let readFileSyncStub: SinonStub;
+    let oldCache: JSONable | undefined;
+
+    beforeEach(function () {
+        oldCache = config["cache"];
+        readFileSyncStub = sandbox.stub(fs, "readFileSync").withArgs(config["filePath"]);
+    });
+
     afterEach(function () {
+        config["cache"] = oldCache;
         sandbox.restore();
     });
 
@@ -37,12 +46,6 @@ describe("config/config", function () {
     });
 
     describe(".getString", function () {
-
-        let readFileSyncStub: SinonStub;
-
-        beforeEach(function () {
-            readFileSyncStub = sandbox.stub(fs, "readFileSync").withArgs(config["filePath"]);
-        });
 
         it("should read the `config-data.json` file", function () {
             config["getString"]();
@@ -82,33 +85,27 @@ describe("config/config", function () {
 
     describe(".getJSONable", function () {
 
-        let getStringStub: SinonStub;
-
-        beforeEach(function () {
-            getStringStub = sandbox.stub(config, "getString" as any);
-        });
-
-        it("should call `getString`", function () {
-            getStringStub.returns("{}");
+        it("should call `readFileSync`", function () {
+            readFileSyncStub.returns("{}");
             config["getJSONable"]();
 
-            assert.strictEqual(getStringStub.callCount, 1);
+            assert.strictEqual(readFileSyncStub.callCount, 1);
         });
 
         it("should throw if `getString` does not return parsable JSON", function () {
-            getStringStub.returns("not parsable json");
+            readFileSyncStub.returns("not parsable json");
 
             assert.throws(() => { config["getJSONable"](); });
         });
 
         it("should throw a specific error if `getString` does not return parsable JSON", function () {
-            getStringStub.returns("not parsable json");
+            readFileSyncStub.returns("not parsable json");
 
             assert.throws(() => { config["getJSONable"](); }, /Syntax error in .*\./);
         });
 
         it("should return the parsed `JSONable` if `getString`", function () {
-            getStringStub.returns("{ \"a\": \"a\" }");
+            readFileSyncStub.returns("{ \"a\": \"a\" }");
 
             assert.strictEqual(config["getJSONable"]().get("a").string, "a");
         });
@@ -116,18 +113,6 @@ describe("config/config", function () {
     });
 
     describe(".getConfig", function () {
-
-        let getJSONableStub: SinonStub;
-        let oldCache: JSONable | undefined;
-
-        beforeEach(function () {
-            oldCache = config["cache"];
-            getJSONableStub = sandbox.stub(config, "getJSONable" as any);
-        });
-
-        afterEach(function () {
-            config["cache"] = oldCache;
-        });
 
         describe("with cached value", function () {
 
@@ -142,10 +127,10 @@ describe("config/config", function () {
                 assert.strictEqual(config["getConfig"](), cachedValue);
             });
 
-            it("should not call `getJSONable`", function () {
+            it("should not call `readFileSync`", function () {
                 config["getConfig"]();
 
-                assert.strictEqual(getJSONableStub.callCount, 0);
+                assert.strictEqual(readFileSyncStub.callCount, 0);
             });
 
         });
@@ -156,25 +141,24 @@ describe("config/config", function () {
                 config["cache"] = undefined;
             });
 
-            it("should call `getJSONable`", function () {
+            it("should call `readFileSync`", function () {
+                readFileSyncStub.returns("{}");
                 config["getConfig"]();
 
-                assert.strictEqual(getJSONableStub.callCount, 1);
+                assert.strictEqual(readFileSyncStub.callCount, 1);
             });
 
             it("should return the result of `getJSONable`", function () {
-                const jsonable = JSONable.parse("\"any jsonable\"");
-                getJSONableStub.returns(jsonable);
+                readFileSyncStub.returns("{ \"a\": \"b\" }");
 
-                assert.strictEqual(config["getConfig"](), jsonable);
+                assert.strictEqual(config["getConfig"]().get("a").string, "b");
             });
 
             it("should set `cache` to the result of `getJSONable`", function () {
-                const jsonable = JSONable.parse("\"any jsonable\"");
-                getJSONableStub.returns(jsonable);
+                readFileSyncStub.returns("{ \"a\": \"b\" }");
                 config["getConfig"]();
 
-                assert.strictEqual(config["cache"], jsonable);
+                assert.strictEqual((config["cache"] as JSONable).get("a").string, "b");
             });
 
         });
@@ -183,46 +167,33 @@ describe("config/config", function () {
 
     describe(".getCookieSecret", function () {
 
-        let getConfigStub: SinonStub;
-
-        beforeEach(function () {
-            getConfigStub = sandbox.stub(config, "getConfig" as any)
-                .returns(new JSONable({ cookieSecret: "temporary unused cookie secret" }));
-        });
-
-        it("should call `getConfig`", function () {
-            config.getCookieSecret();
-
-            assert.strictEqual(getConfigStub.callCount, 1);
-        });
-
-        it("should return `getConfig`'s `cookieSecret` string", function () {
+        it("should return `readFileSync`'s `cookieSecret` string", function () {
             const cookieSecret = "any string";
-            getConfigStub.returns(new JSONable({ cookieSecret }));
+            readFileSyncStub.returns(`{ "cookieSecret": "${cookieSecret}" }`);
 
             assert.strictEqual(config.getCookieSecret(), cookieSecret);
         });
 
         it("should throw if `cookieSecret` is not present", function () {
-            getConfigStub.returns(new JSONable({}));
+            readFileSyncStub.returns("{}");
 
             assert.throws(() => { config.getCookieSecret(); });
         });
 
         it("should throw a specific error if `cookieSecret` is not present", function () {
-            getConfigStub.returns(new JSONable({}));
+            readFileSyncStub.returns("{}");
 
             assert.throws(() => { config.getCookieSecret(); }, /missing a "cookieSecret" string\./);
         });
 
         it("should throw if `cookieSecret` is not a `string", function () {
-            getConfigStub.returns(new JSONable({ cookieSecret: 9000 }));
+            readFileSyncStub.returns("{ \"cookieSecret\": 9000 }");
 
             assert.throws(() => { config.getCookieSecret(); });
         });
 
         it("should throw a specific error if `cookieSecret` is not a `string`", function () {
-            getConfigStub.returns(new JSONable({ cookieSecret: 9000 }));
+            readFileSyncStub.returns("{ \"cookieSecret\": 9000 }");
 
             assert.throws(() => { config.getCookieSecret(); }, /missing a "cookieSecret" string\./);
         });
