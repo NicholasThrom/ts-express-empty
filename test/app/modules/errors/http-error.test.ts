@@ -3,7 +3,7 @@ import "mocha";
 import { sandbox as sandboxFactory } from "sinon";
 const sandbox = sandboxFactory.create();
 
-import { HTTPError } from "../../../../app/modules/types/types";
+import { HTTPError } from "../../../../app/modules/errors/http-error";
 
 describe("modules/types/types", function () {
 
@@ -17,7 +17,7 @@ describe("modules/types/types", function () {
             assert.exists(HTTPError);
         });
 
-        it("should be instatiable", function () {
+        it("should be instantiable", function () {
             const httpError = new HTTPError();
 
             assert.exists(httpError);

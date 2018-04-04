@@ -6,7 +6,7 @@ import * as morgan from "morgan";
 import * as path from "path";
 
 import { config } from "./config/config";
-import { HTTPError } from "./modules/types/types";
+import { HTTPError } from "./modules/errors/http-error";
 import { routes } from "./routes/routes";
 
 /**
