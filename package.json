@@ -63,9 +63,10 @@
         ],
         "exclude": [
             "**/*.d.ts",
-            "app/public/scripts/*.js",
+            "public/**/*",
             "test/**/*",
-            "coverage/**/*"
+            "coverage/**/*",
+            "webpack.config.js"
         ],
         "reporter": [
             "html",
