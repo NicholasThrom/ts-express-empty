@@ -44,8 +44,9 @@ but you may insult me for them.
     [Chai](http://chaijs.com/),
     and [Istanbul](https://istanbul.js.org/)
 - Linters –
-    [tslint](https://palantir.github.io/tslint/)
-    and [pug-lint](https://github.com/pugjs/pug-lint)
+    [tslint](https://palantir.github.io/tslint/),
+    [pug-lint](https://github.com/pugjs/pug-lint),
+    and [stylelint](https://stylelint.io/)
 
 For a full list of dependencies see `package.json`.
 
@@ -64,7 +65,23 @@ and [mocha](#npm-run-mocha).
 
 #### `npm run lint`
 
-Runs `tslint` and `pug-lint`.
+Runs `tslint`, `pug-lint`, and `stylelint`.
+See [`npm run lint-ts`](#npm-run-lint-ts),
+[`npm run lint-pug`](#npm-run-lint-pug),
+and [`npm run lint-less`](#npm-run-lint-less)
+for details.
+
+#### `npm run lint-ts`
+
+Runs `tslint`.
+
+#### `npm run lint-pug`
+
+Runs `pug-lint`.
+
+#### `npm run lint-less`
+
+Runs `pug-lint`.
 
 #### `npm run typecheck`
 
