@@ -1,0 +1,17 @@
+{
+    "extension": [
+        ".ts"
+    ],
+    "exclude": [
+        "**/*.d.ts",
+        "public/**/*",
+        "test/**/*",
+        "coverage/**/*",
+        "webpack.config.js"
+    ],
+    "reporter": [
+        "html",
+        "text"
+    ],
+    "all": true
+}
