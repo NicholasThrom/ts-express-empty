@@ -1,0 +1,20 @@
+{
+    "extends": "stylelint-config-standard",
+    "rules": {
+        "declaration-block-single-line-max-declarations": 2,
+        "declaration-no-important": true,
+        "font-family-name-quotes": "always-unless-keyword",
+        "font-weight-notation": "numeric",
+        "function-url-quotes": "always",
+        "indentation": 4,
+        "max-line-length": 120,
+        "selector-attribute-quotes": "always",
+        "selector-class-pattern": "[a-z]+(?:-[a-z]+)*$",
+        "selector-id-pattern": "[a-z]+(?:-[a-z]+)*$",
+        "string-quotes": "double",
+        "value-keyword-case": "lower"
+    },
+    "ignoreFiles": [
+        "./public/**/*"
+    ]
+}
