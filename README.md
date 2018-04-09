@@ -19,9 +19,19 @@ You may not hold me legally responsible for any problems,
 but you may insult me for them.
 
 ## Contents
+- [Getting Started](#getting-started)
 - [Notable Dependencies](#notable-dependencies)
 - [Scripts](#scripts)
 - [File Structure](#file-structure)
+
+## Getting Started
+
+1. Download this repository.
+2. Run `npm install`.
+3. Look in `app/config`
+    and follow the instructions there to configure things.
+4. Run `npm start`.
+5. Go to [localhost:3000](http://localhost:3000).
 
 ## Notable Dependencies
 - Language – [TypeScript](https://www.typescriptlang.org/)
