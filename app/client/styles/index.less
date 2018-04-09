@@ -1,3 +1,39 @@
-h1 {
+.sans() {
     font-family: sans-serif;
+}
+
+body {
+    padding: 1rem;
+}
+
+h1 {
+    .sans();
+
+    color: #111;
+}
+
+p {
+    .sans();
+
+    color: #333;
+}
+
+a {
+    .sans();
+
+    color: #3af;
+    text-decoration: none;
+
+    &:hover {
+        color: #28d;
+        text-decoration: underline;
+    }
+
+    &:visited {
+        color: #63f;
+    }
+
+    &:visited:hover {
+        color: #52d;
+    }
 }
