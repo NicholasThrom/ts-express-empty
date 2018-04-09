@@ -11,6 +11,10 @@ One exception is including files in `node_modules`.
 Be careful importing things,
 as it can seriously increase file size.
 
+Sourcemaps are included for typescript
+if NODE_ENV is "development"
+or undefined.
+
 Likewise, in `styles/`, `index.less` is the only file that is compiled.
 Anything else to be included needs to be imported.
 While less will grab files from anywhere,
