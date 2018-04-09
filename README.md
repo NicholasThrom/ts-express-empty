@@ -21,13 +21,6 @@ but you may insult me for them.
 ## Contents
 - [Notable Dependencies](#notable-dependencies)
 - [Scripts](#scripts)
-    - [`start`](#npm-start)
-    - [`test`](#npm-test)
-    - [`lint`](#npm-run-lint)
-    - [`typecheck`](#npm-run-typecheck)
-    - [`mocha`](#npm-run-mocha)
-    - [`coverage`](#npm-run-coverage)
-    - [`compile`](#npm-run-compile)
 - [File Structure](#file-structure)
 
 ## Notable Dependencies
@@ -52,6 +45,21 @@ For a full list of dependencies see `package.json`.
 
 ## Scripts
 
+Scripts include
+
+- [`start`](#npm-start)
+- [`test`](#npm-test)
+    - [`lint`](#npm-run-lint)
+        - [`lint-ts`](#npm-run-lint-ts)
+        - [`lint-pug`](#npm-run-lint-pug)
+        - [`lint-less`](#npm-run-lint-less)
+    - [`typecheck`](#npm-run-typecheck)
+    - [`mocha`](#npm-run-mocha)
+- [`coverage`](#npm-run-coverage)
+- [`compile`](#npm-run-compile)
+    - [`compile-js`](#npm-run-compile-js)
+    - [`compile-css`](#npm-run-compile-css)
+
 #### `npm start`
 
 Runs the server on the set port, or by default port 3000.
@@ -59,16 +67,16 @@ Does not automatically rerun on changes.
 
 #### `npm test`
 
-Runs [lint](#npm-run-lint),
-[typecheck](#npm-run-typecheck),
-and [mocha](#npm-run-mocha).
+Runs [`lint`](#npm-run-lint),
+[`typecheck`](#npm-run-typecheck),
+and [`mocha`](#npm-run-mocha).
 
 #### `npm run lint`
 
 Runs `tslint`, `pug-lint`, and `stylelint`.
-See [`npm run lint-ts`](#npm-run-lint-ts),
-[`npm run lint-pug`](#npm-run-lint-pug),
-and [`npm run lint-less`](#npm-run-lint-less)
+See [`lint-ts`](#npm-run-lint-ts),
+[`lint-pug`](#npm-run-lint-pug),
+and [`lint-less`](#npm-run-lint-less)
 for details.
 
 #### `npm run lint-ts`
@@ -98,8 +106,8 @@ Generates a coverage from istanbul and [mocha](#npm-run-mocha).
 #### `npm run compile`
 
 Compiles the files in `app/client`, putting them in `public`.
-See [`npm run compile-js`](#npm-run-compile-js)
-and [`npm run compile-css`](#npm-run-compile-css)
+See [`compile-js`](#npm-run-compile-js)
+and [`compile-css`](#npm-run-compile-css)
 for details.
 
 #### `npm run compile-js`
