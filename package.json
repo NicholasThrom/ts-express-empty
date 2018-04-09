@@ -1,6 +1,6 @@
 {
     "name": "ts-express-empty",
-    "version": "0.0.0",
+    "version": "0.1.0",
     "description": "Just an empty ts/express app to save some time setting up.",
     "main": "scripts/start.js",
     "scripts": {
